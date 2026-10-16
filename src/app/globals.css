@@ -1,0 +1,82 @@
+@import "tailwindcss";
+
+/* Brand tokens — use as Tailwind classes, e.g. bg-ink, text-gold, border-edge */
+@theme {
+  --font-sans: var(--font-outfit), system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
+
+  /* Dark surfaces */
+  --color-ink: #05073a;
+  --color-ink-deep: #03041e;
+  --color-royal: #0c12a0;
+  --color-line: #1c2170;
+  --color-edge: #252a7a;
+  --color-edge-strong: #3a3f8f;
+  --color-outline: #474ca0;
+
+  /* Text on dark */
+  --color-paper: #f7f8ff;
+  --color-paper-soft: #d6d9f5;
+  --color-muted: #b4b8e6;
+  --color-subtle: #9ca1da;
+
+  /* Accent */
+  --color-gold: #f3b303;
+
+  /* Light band */
+  --color-lilac: #f0f0ff;
+  --color-lilac-edge: #d5d7f5;
+  --color-lilac-line: #d0d2f2;
+  --color-lilac-rule: #e4e5fa;
+  --color-lilac-chip: #b9bce8;
+
+  /* Text on light / gold */
+  --color-ink-800: #10135a;
+  --color-ink-700: #1a1d6b;
+  --color-ink-600: #2e3280;
+  --color-ink-500: #3c408a;
+  --color-ink-400: #4a4e99;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+  body {
+    margin: 0;
+    background: var(--color-ink);
+    color: var(--color-paper);
+    font-family: var(--font-sans);
+    line-height: normal;
+  }
+  /* Utility classes (text-*) live in a later layer, so they override these. */
+  a {
+    color: var(--color-paper);
+    text-decoration: none;
+  }
+  a:hover {
+    color: var(--color-gold);
+  }
+  details > summary {
+    list-style: none;
+    cursor: pointer;
+  }
+  details > summary::-webkit-details-marker {
+    display: none;
+  }
+}
+
+/* Page-width wrapper with responsive side gutters */
+@utility container-page {
+  max-width: 1280px;
+  margin-inline: auto;
+  padding-inline: clamp(16px, 4vw, 48px);
+}
+
+/* Striped placeholder for images that haven't been supplied yet */
+@utility placeholder-stripes {
+  background: repeating-linear-gradient(135deg, #0a0e55 0 12px, #0e1366 12px 24px);
+}
