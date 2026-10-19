@@ -6,7 +6,7 @@ import { bookDemo, type FormState } from "@/lib/actions/forms";
 const fieldClasses =
   "box-border min-h-13 rounded-xl border border-ink bg-white text-base text-ink";
 
-export function DemoCta({ courseTitles }: { courseTitles: string[] }) {
+export function DemoCta({ courseTitles, defaultCourse }: { courseTitles: string[]; defaultCourse?: string }) {
   const [state, formAction, pending] = useActionState<FormState, FormData>(bookDemo, {
     status: "idle",
   });
@@ -37,7 +37,7 @@ export function DemoCta({ courseTitles }: { courseTitles: string[] }) {
           </div>
           <label className="flex flex-col gap-1.5 text-sm font-medium">
             Interested in
-            <select name="course" className={`px-3.5 ${fieldClasses}`}>
+            <select name="course" defaultValue={defaultCourse} className={`px-3.5 ${fieldClasses}`}>
               {courseTitles.map((title) => (
                 <option key={title}>{title}</option>
               ))}

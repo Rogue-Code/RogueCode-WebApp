@@ -3,7 +3,8 @@ import { ButtonLink } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Icon } from "@/components/ui/Icon";
 import { Photo } from "@/components/ui/Photo";
-import { courses, featuredCourseSlugs } from "@/data/academy";
+import { CourseIcon } from "@/components/academy/CourseIcon";
+import { courseHref, courseSummary, featuredCourseIds, getCourse } from "@/data/academy";
 
 const reasons = [
   {
@@ -21,9 +22,7 @@ const reasons = [
 ];
 
 export function AcademyBand() {
-  const featured = featuredCourseSlugs
-    .map((slug) => courses.find((c) => c.slug === slug))
-    .filter((c) => c !== undefined);
+  const featured = featuredCourseIds.map(getCourse).filter((c) => c !== undefined);
 
   return (
     <section id="academy" className="bg-lilac text-ink">
@@ -57,20 +56,23 @@ export function AcademyBand() {
         <div className="flex flex-wrap gap-5">
           {featured.map((course) => (
             <Link
-              key={course.slug}
-              href="/academy"
+              key={course.id}
+              href={courseHref(course)}
               className="flex flex-[1_1_320px] flex-col gap-4 rounded-[20px] border border-lilac-edge bg-white p-8 text-ink"
             >
+              <CourseIcon courseId={course.id} />
               <span className="flex flex-wrap gap-2 font-mono text-xs">
-                <span className="rounded-md bg-ink px-2.5 py-1.25 text-paper">{course.duration}</span>
-                <span className="rounded-md border border-lilac-chip px-2.5 py-1.25">{course.mode}</span>
+                {course.duration && (
+                  <span className="rounded-md bg-ink px-2.5 py-1.25 text-paper">{course.duration.toUpperCase()}</span>
+                )}
+                <span className="rounded-md border border-lilac-chip px-2.5 py-1.25">{course.category.toUpperCase()}</span>
               </span>
               <span className="text-[28px] leading-[1.1] font-bold tracking-[-0.025em]">
                 {course.title}
               </span>
-              <span className="text-base leading-[1.6] text-ink-500">{course.summary}</span>
+              <span className="text-base leading-[1.6] text-ink-500">{courseSummary(course)}</span>
               <span className="mt-auto flex items-center justify-between border-t border-lilac-rule pt-5 font-semibold">
-                <span>{course.price}</span>
+                <span>{course.modules?.length} modules</span>
                 <span className="inline-flex items-center gap-1.5">
                   Course details
                   <Icon name="arrowRight" size={16} />

@@ -1,90 +1,55 @@
-export type CourseCategory = "web" | "mobile" | "programming" | "design";
+import catalog from "./courses.json";
 
-export type Course = {
-  slug: string;
+// Course catalogue curated from the Google Drive "Courses" folder (src/data/courses.json).
+// fee2021 comes from the 2021 brochure and is not shown on the site until it's confirmed.
+
+export type CourseModule = {
   title: string;
-  summary: string;
-  category: CourseCategory;
-  level: string;
-  duration: string;
-  price: string;
-  mode: string;
-  flagship?: boolean;
+  topics?: string[];
+  /** Links the module to another course's page (e.g. subjects covered in academic tuition). */
+  courseId?: string;
 };
 
-export const courses: Course[] = [
-  {
-    slug: "full-stack-web-development",
-    title: "Full-Stack Web Development",
-    summary:
-      "HTML, CSS and JavaScript through React and Node.js, ending with a deployed project of your own.",
-    category: "web",
-    level: "BEGINNER → JOB-READY",
-    duration: "[DURATION]",
-    price: "[PRICE]",
-    mode: "ONLINE + OFFLINE",
-    flagship: true,
-  },
-  {
-    slug: "frontend-with-react",
-    title: "Frontend with React",
-    summary:
-      "Components, state, routing and APIs. For people who know some JavaScript and want to build real interfaces.",
-    category: "web",
-    level: "INTERMEDIATE",
-    duration: "[DURATION]",
-    price: "[PRICE]",
-    mode: "[MODE]",
-  },
-  {
-    slug: "python-programming",
-    title: "Python Programming",
-    summary:
-      "From your first script to working applications, with problem-solving practice in every session.",
-    category: "programming",
-    level: "BEGINNER",
-    duration: "[DURATION]",
-    price: "[PRICE]",
-    mode: "ONLINE + OFFLINE",
-  },
-  {
-    slug: "mobile-app-development",
-    title: "Mobile App Development",
-    summary:
-      "Build and publish an Android and iOS app from one codebase, from layout to the store listing.",
-    category: "mobile",
-    level: "INTERMEDIATE",
-    duration: "[DURATION]",
-    price: "[PRICE]",
-    mode: "[MODE]",
-  },
-  {
-    slug: "ui-ux-design-fundamentals",
-    title: "UI/UX Design Fundamentals",
-    summary:
-      "Research, wireframes and polished screens in Figma, critiqued by the studio's designers.",
-    category: "design",
-    level: "BEGINNER",
-    duration: "[DURATION]",
-    price: "[PRICE]",
-    mode: "[MODE]",
-  },
-];
+export type Course = {
+  id: string;
+  title: string;
+  category: string;
+  description?: string;
+  prerequisites?: string;
+  duration?: string;
+  fee2021?: string;
+  /** documented = written syllabus; from-materials = taken from slides/practicals; title-only = no syllabus yet */
+  syllabusStatus: "documented" | "from-materials" | "title-only";
+  source?: string;
+  modules?: CourseModule[];
+};
+
+export const courses = catalog.courses as Course[];
+
+/** Categories in catalogue order. */
+export const courseCategories = [...new Set(courses.map((c) => c.category))];
+
+export const flagshipCourseId = "full-stack-web";
 
 /** Courses featured on the homepage, in order. */
-export const featuredCourseSlugs = [
-  "full-stack-web-development",
-  "python-programming",
-  "frontend-with-react",
-];
+export const featuredCourseIds = ["full-stack-web", "python", "javascript-react"];
 
-export const courseFilters: { value: "all" | CourseCategory; label: string }[] = [
-  { value: "all", label: "All" },
-  { value: "web", label: "Web" },
-  { value: "mobile", label: "Mobile" },
-  { value: "programming", label: "Programming" },
-  { value: "design", label: "Design" },
-];
+export function getCourse(id: string) {
+  return courses.find((c) => c.id === id);
+}
+
+export function courseHref(course: Pick<Course, "id">) {
+  return `/academy/courses/${course.id}`;
+}
+
+/** One-line summary for cards: the written description, or the first few modules. */
+export function courseSummary(course: Course) {
+  if (course.description) return course.description;
+  const modules = course.modules ?? [];
+  if (modules.length === 0) return "Ask us for the current syllabus and batch timings.";
+  const names = modules.slice(0, 3).map((m) => m.title);
+  return `Covers ${names.join(", ")}${modules.length > 3 ? " and more" : ""}.`;
+}
 
 export const academyFacts = [
   { label: "BATCH SIZE", value: "Up to [00] students" },
@@ -112,48 +77,6 @@ export const academySteps = [
     description: "Leave with a certificate, a deployed portfolio and help preparing for interviews.",
   },
 ];
-
-export const flagshipSyllabus = {
-  facts: [
-    { label: "Duration", value: "[00 weeks]" },
-    { label: "Schedule", value: "[Days, time]" },
-    { label: "Fee", value: "[₹00,000] · EMI [if available]" },
-  ],
-  modules: [
-    {
-      title: "Web foundations",
-      weeks: "[0 WK]",
-      description:
-        "How the web works, semantic HTML, modern CSS, Flexbox and Grid, responsive layouts. You build and publish a personal site.",
-    },
-    {
-      title: "JavaScript, properly",
-      weeks: "[0 WK]",
-      description: "Variables to async code, the DOM, fetch and debugging.",
-    },
-    {
-      title: "React",
-      weeks: "[0 WK]",
-      description: "Components, hooks, routing and working with APIs.",
-    },
-    {
-      title: "Node.js & databases",
-      weeks: "[0 WK]",
-      description: "REST APIs, authentication and storing data.",
-    },
-    {
-      title: "Git, testing & deployment",
-      weeks: "[0 WK]",
-      description: "Team workflows, pull requests and getting your app online.",
-    },
-    {
-      title: "Capstone at the studio",
-      weeks: "[0 WK]",
-      description: "A real brief, reviewed like client work, shipped to production.",
-      highlight: true,
-    },
-  ],
-};
 
 export const trainers = Array.from({ length: 4 }, (_, i) => ({
   id: `trainer-${i + 1}`,
@@ -200,4 +123,34 @@ export const instagramPosts = [
     image: "/images/instagram/angular-webinar.jpg",
     alt: "Poster for a Rogue Code live webinar: how to build a single page application using Angular",
   },
+];
+
+/**
+ * Coding for school kids. Not in the Drive catalogue yet, so everything in [brackets]
+ * is a suggestion to confirm or replace.
+ */
+export const kidsTracks = [
+  {
+    ages: "[AGES 8–11]",
+    title: "[First steps in coding]",
+    description:
+      "[Block-based coding in Scratch: games and animations that teach sequences, loops and logic.]",
+  },
+  {
+    ages: "[AGES 11–14]",
+    title: "[Python for young coders]",
+    description:
+      "[Text-based coding with small projects like quizzes, calculators and simple games.]",
+  },
+  {
+    ages: "[AGES 13–16]",
+    title: "[Build your first website]",
+    description: "[HTML, CSS and a little JavaScript to design and publish a personal website.]",
+  },
+];
+
+export const kidsFacts = [
+  { label: "BATCH SIZE", value: "[Small groups of 00]" },
+  { label: "TIMINGS", value: "[Weekends / after school]" },
+  { label: "MODE", value: "[Online + in person]" },
 ];

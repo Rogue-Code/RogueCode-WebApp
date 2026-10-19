@@ -59,7 +59,8 @@ export const academyHeader: HeaderConfig = {
   logoSuffix: "academy",
   nav: [
     { label: "Tech Solutions", href: "/" },
-    { label: "Courses", href: "/academy#courses" },
+    { label: "Courses", href: "/academy#courses", match: "/academy/courses" },
+    { label: "For kids", href: "/academy#kids" },
     { label: "Events", href: "/events" },
     { label: "Shop", href: "/academy/shop", match: "/academy/shop" },
     { label: "Jamboard", href: "/jamboard" },

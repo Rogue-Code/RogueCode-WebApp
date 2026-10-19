@@ -50,6 +50,10 @@
   html {
     scroll-behavior: smooth;
   }
+  /* Keep anchor targets (#courses, #kids…) clear of the sticky header */
+  [id] {
+    scroll-margin-top: 96px;
+  }
   * {
     -webkit-tap-highlight-color: transparent;
   }

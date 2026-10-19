@@ -1,8 +1,16 @@
 "use server";
 
+import { site } from "@/data/site";
+import { sendEnquiryEmail } from "@/lib/mail";
+
 export type FormState = {
   status: "idle" | "success" | "error";
   message?: string;
+};
+
+const sendFailed: FormState = {
+  status: "error",
+  message: `Sorry, that didn't go through. Please email us at ${site.contact.email} or try again.`,
 };
 
 function field(formData: FormData, name: string) {
@@ -23,8 +31,17 @@ export async function submitContact(_prev: FormState, formData: FormData): Promi
     return { status: "error", message: "Please add your name and a phone number or email." };
   }
 
-  // TODO: deliver the enquiry (email, CRM, database…). Logged for now.
-  console.log("[contact]", enquiry);
+  const sent = await sendEnquiryEmail(
+    `New enquiry: ${enquiry.name}`,
+    {
+      "Interested in": enquiry.interest,
+      Name: enquiry.name,
+      "Phone / email": enquiry.contact,
+      Message: enquiry.message,
+    },
+    enquiry.contact,
+  );
+  if (!sent) return sendFailed;
 
   return { status: "success", message: "Thanks! We'll get back to you shortly." };
 }
@@ -43,8 +60,19 @@ export async function registerForEvent(_prev: FormState, formData: FormData): Pr
     return { status: "error", message: "Please add your name, email and phone." };
   }
 
-  // TODO: save the registration against the event in Firestore and email a confirmation.
-  console.log("[event-registration]", registration);
+  // TODO: also save the registration against the event in Firestore and email the attendee.
+  const sent = await sendEnquiryEmail(
+    `Event registration: ${registration.event} — ${registration.name}`,
+    {
+      Event: registration.event,
+      Name: registration.name,
+      Email: registration.email,
+      Phone: registration.phone,
+      "College / company": registration.college,
+    },
+    registration.email,
+  );
+  if (!sent) return sendFailed;
 
   return { status: "success", message: "You're registered! Check your email for the details." };
 }
@@ -61,8 +89,12 @@ export async function bookDemo(_prev: FormState, formData: FormData): Promise<Fo
     return { status: "error", message: "Please add your name and phone number." };
   }
 
-  // TODO: deliver the booking (email, CRM, database…). Logged for now.
-  console.log("[demo]", booking);
+  const sent = await sendEnquiryEmail(`Demo class request: ${booking.name}`, {
+    Name: booking.name,
+    Phone: booking.phone,
+    Course: booking.course,
+  });
+  if (!sent) return sendFailed;
 
   return { status: "success", message: "You're booked in! We'll call you back to confirm." };
 }

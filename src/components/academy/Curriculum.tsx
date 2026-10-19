@@ -1,69 +1,50 @@
 import { ButtonLink } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
-import { Icon } from "@/components/ui/Icon";
-import { flagshipSyllabus } from "@/data/academy";
+import { courseHref, courseSummary, flagshipCourseId, getCourse } from "@/data/academy";
+import { SyllabusList } from "./SyllabusList";
 
 export function Curriculum() {
+  const course = getCourse(flagshipCourseId);
+  if (!course) return null;
+
+  const facts = [
+    { label: "Duration", value: course.duration },
+    { label: "Prerequisites", value: course.prerequisites },
+    { label: "Fee", value: "On enquiry" },
+  ].filter((f) => f.value);
+
   return (
     <section id="curriculum" className="bg-lilac text-ink">
-      <div className="container-page flex flex-wrap gap-16 py-28">
-        <div className="flex-[1_1_380px]">
+      <div className="container-page flex flex-wrap items-start gap-16 py-28">
+        <div className="flex-[1_1_380px] lg:sticky lg:top-28">
           <Eyebrow className="text-ink-400">{"// FLAGSHIP SYLLABUS"}</Eyebrow>
           <h2 className="text-[clamp(36px,4.2vw,56px)] leading-[1.02] font-bold tracking-[-0.035em]">
-            Inside Full-Stack Web Development
+            Inside {course.title}
           </h2>
           <p className="mt-6 text-lg leading-[1.6] text-ink-600">
-            Six modules, from your first web page to a full application running on the internet.
-            Every module ends with something you&apos;ve built.
+            {courseSummary(course)} {course.modules?.length} modules, from your first web page to a
+            dynamic, database-backed website.
           </p>
-          <div className="mt-8 flex flex-col border-t border-lilac-line">
-            {flagshipSyllabus.facts.map((fact) => (
-              <p
-                key={fact.label}
-                className="flex justify-between border-b border-lilac-line py-3.5 text-base"
-              >
-                <span className="text-ink-400">{fact.label}</span>
-                <span className="font-semibold">{fact.value}</span>
-              </p>
+          <dl className="mt-8 flex flex-col border-t border-lilac-line">
+            {facts.map((fact) => (
+              <div key={fact.label} className="flex justify-between gap-6 border-b border-lilac-line py-3.5 text-base">
+                <dt className="text-ink-400">{fact.label}</dt>
+                <dd className="text-right font-semibold">{fact.value}</dd>
+              </div>
             ))}
-          </div>
+          </dl>
           <div className="mt-8 flex flex-wrap gap-3">
             <ButtonLink href="#demo" variant="ink" className="text-base!">
               Enroll now
             </ButtonLink>
-            <ButtonLink href="#curriculum" variant="outlineInk" className="gap-2! text-base!">
-              <Icon name="download" />
-              Download syllabus
+            <ButtonLink href={courseHref(course)} variant="outlineInk" className="text-base!">
+              Course page
             </ButtonLink>
           </div>
         </div>
 
-        <div className="flex flex-[1.3_1_460px] flex-col gap-2.5">
-          {flagshipSyllabus.modules.map((mod, i) => {
-            const dark = "highlight" in mod && mod.highlight;
-            return (
-              <details
-                key={mod.title}
-                open={i === 0}
-                className={`rounded-2xl border ${dark ? "border-ink bg-ink text-paper" : "border-lilac-edge bg-white"}`}
-              >
-                <summary className="flex min-h-11 items-center gap-5 px-6 py-5.5">
-                  <span className={`font-mono text-[13px] ${dark ? "text-gold" : "text-ink-400"}`}>
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <span className="flex-auto text-xl font-semibold">{mod.title}</span>
-                  <span className={`font-mono text-xs ${dark ? "text-muted" : "text-ink-400"}`}>
-                    {mod.weeks}
-                  </span>
-                </summary>
-                <p
-                  className={`pr-6 pb-6 pl-16.5 text-base leading-[1.6] ${dark ? "text-paper-soft" : "text-ink-500"}`}
-                >
-                  {mod.description}
-                </p>
-              </details>
-            );
-          })}
+        <div className="flex-[1.3_1_460px]">
+          <SyllabusList modules={course.modules ?? []} tone="light" />
         </div>
       </div>
     </section>

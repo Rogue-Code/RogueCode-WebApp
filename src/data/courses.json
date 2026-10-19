@@ -1,0 +1,1416 @@
+{
+  "institute": "Rogue Code",
+  "generatedFrom": "Google Drive > Courses folder",
+  "notes": [
+    "fee2021 and duration come from the 2021 Student's Courses Brochure; check before publishing.",
+    "syllabusStatus: documented = written syllabus in Drive; from-materials = topics taken from slides/practicals; title-only = folder exists but no syllabus."
+  ],
+  "courses": [
+    {
+      "id": "c",
+      "title": "C Programming",
+      "category": "Programming Languages",
+      "description": "This course builds strong programming fundamentals for learners who want to solve complex problems by writing computer programs.",
+      "prerequisites": "No prior experience required",
+      "duration": "12-15 lectures (2 hrs each)",
+      "fee2021": "₹9,000",
+      "syllabusStatus": "documented",
+      "source": "Student's Courses Brochure",
+      "modules": [
+        {
+          "title": "C Language: History & Features"
+        },
+        {
+          "title": "Basic Structure of a C Program"
+        },
+        {
+          "title": "Data Types"
+        },
+        {
+          "title": "Tokens & Keywords"
+        },
+        {
+          "title": "Constants"
+        },
+        {
+          "title": "Variables and Scope Rules"
+        },
+        {
+          "title": "Operators and Expressions"
+        },
+        {
+          "title": "Control Structures"
+        },
+        {
+          "title": "Storage Class Specifiers"
+        },
+        {
+          "title": "Functions"
+        },
+        {
+          "title": "Arrays"
+        },
+        {
+          "title": "Strings"
+        },
+        {
+          "title": "Pointers"
+        },
+        {
+          "title": "Structures"
+        },
+        {
+          "title": "Unions"
+        },
+        {
+          "title": "File Handling"
+        },
+        {
+          "title": "3 Projects"
+        }
+      ]
+    },
+    {
+      "id": "cpp",
+      "title": "C++ Programming",
+      "category": "Programming Languages",
+      "description": "Get conversant with C++, one of the most versatile programming languages. Mastering it makes picking up modern languages easy.",
+      "prerequisites": "No prior experience required",
+      "duration": "14-16 lectures (2 hrs each)",
+      "fee2021": "₹10,000",
+      "syllabusStatus": "documented",
+      "source": "Student's Courses Brochure",
+      "modules": [
+        {
+          "title": "C++ Programming Fundamentals"
+        },
+        {
+          "title": "Object-Oriented Programming"
+        },
+        {
+          "title": "Data Types & Operators"
+        },
+        {
+          "title": "Functions & Control Structures"
+        },
+        {
+          "title": "Classes & Objects"
+        },
+        {
+          "title": "Constructors & Destructors"
+        },
+        {
+          "title": "Operator Overloading & Type Conversion"
+        },
+        {
+          "title": "Inheritance: Extending Classes"
+        },
+        {
+          "title": "Pointers, Virtual Functions & Polymorphism"
+        },
+        {
+          "title": "Working with Files & Templates"
+        }
+      ]
+    },
+    {
+      "id": "core-java",
+      "title": "Core Java",
+      "category": "Programming Languages",
+      "description": "Become industry ready: learn Java programming, design object-oriented applications and build Java programs through hands-on activities.",
+      "prerequisites": "No prior experience required",
+      "duration": "20-22 lectures (2 hrs each)",
+      "fee2021": "₹12,000",
+      "syllabusStatus": "documented",
+      "source": "Student's Courses Brochure",
+      "modules": [
+        {
+          "title": "Object-Oriented Programming Fundamentals"
+        },
+        {
+          "title": "Java Programming Basics"
+        },
+        {
+          "title": "Classes & Objects"
+        },
+        {
+          "title": "Operators, Loops & Decision Making"
+        },
+        {
+          "title": "Arrays & Strings"
+        },
+        {
+          "title": "Inheritance: Extending Classes"
+        },
+        {
+          "title": "Constructors"
+        },
+        {
+          "title": "Packages"
+        },
+        {
+          "title": "Interfaces"
+        },
+        {
+          "title": "Abstract Classes"
+        },
+        {
+          "title": "Polymorphism"
+        },
+        {
+          "title": "Threading & Multi-Threading"
+        },
+        {
+          "title": "Exception Handling"
+        },
+        {
+          "title": "Applets & File Handling"
+        }
+      ]
+    },
+    {
+      "id": "advanced-java",
+      "title": "Advanced Java (Spring Boot)",
+      "category": "Programming Languages",
+      "description": "Takes Core Java developers to building real back-end applications with Spring Boot, REST APIs, JPA/Hibernate and microservice basics.",
+      "prerequisites": "Basics of Core Java",
+      "duration": "22 lectures (44 hrs)",
+      "fee2021": "₹16,000",
+      "syllabusStatus": "documented",
+      "source": "Andvanced Java Course Syllabus (sheet); older AWT/Swing/Servlets version in the brochure",
+      "modules": [
+        {
+          "title": "Core Java Refresh",
+          "topics": [
+            "Basic programs",
+            "Object creation and modelling",
+            "Inheritance",
+            "Exception handling",
+            "Method chaining / nested methods",
+            "Static / final",
+            "Package structure",
+            "Constructors / polymorphism",
+            "Basic project creation"
+          ]
+        },
+        {
+          "title": "Spring Boot Intro",
+          "topics": [
+            "App creation with Spring Initializr",
+            "Need for Spring Boot",
+            "Maven / Gradle"
+          ]
+        },
+        {
+          "title": "REST APIs",
+          "topics": [
+            "Why a server is needed",
+            "REST concepts",
+            "Simple GET/POST APIs",
+            "Debugging an application"
+          ]
+        },
+        {
+          "title": "Git",
+          "topics": [
+            "Deploy a simple app on GitHub"
+          ]
+        },
+        {
+          "title": "Design Patterns & Best Practices",
+          "topics": [
+            "Singleton",
+            "Factory",
+            "Util classes",
+            "Enums",
+            "Base classes"
+          ]
+        },
+        {
+          "title": "JPA and ORM",
+          "topics": [
+            "Introduction to ORM",
+            "JPA theory"
+          ]
+        },
+        {
+          "title": "Hibernate",
+          "topics": [
+            "Introduction to Hibernate",
+            "Advantages of Hibernate"
+          ]
+        },
+        {
+          "title": "Local Database Setup",
+          "topics": [
+            "Set up a DB locally",
+            "DBMS refresh"
+          ]
+        },
+        {
+          "title": "End-to-End Working Application",
+          "topics": [
+            "Fresh Spring Boot app",
+            "Project setup per design principles",
+            "JPA and Hibernate connections",
+            "Modelling multiple entities",
+            "REST API and CRUD per model",
+            "Wiring entities into services"
+          ]
+        },
+        {
+          "title": "Unit Testing",
+          "topics": [
+            "Writing basic unit tests"
+          ]
+        },
+        {
+          "title": "New Java 8/17 Features"
+        },
+        {
+          "title": "Microservice Architecture",
+          "topics": [
+            "What a microservice is",
+            "Architecture basics",
+            "Monolithic vs microservice"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "python",
+      "title": "Python Programming",
+      "category": "Programming Languages",
+      "description": "Python is one of the fastest-growing languages, driven by machine learning. This programme gives a hands-on understanding of Python and its applications.",
+      "prerequisites": "No prior experience required",
+      "duration": "20-22 lectures (2 hrs each)",
+      "fee2021": "₹13,000",
+      "syllabusStatus": "documented",
+      "source": "Student's Courses Brochure; Python lecture slides (Parts I-IX)",
+      "modules": [
+        {
+          "title": "Python Introduction"
+        },
+        {
+          "title": "Variables and Data Types"
+        },
+        {
+          "title": "Operators"
+        },
+        {
+          "title": "Conditional Statements"
+        },
+        {
+          "title": "Loops & Control Structures"
+        },
+        {
+          "title": "Functions"
+        },
+        {
+          "title": "String Manipulation"
+        },
+        {
+          "title": "Lists, Tuples and Dictionaries"
+        },
+        {
+          "title": "Modules & Imports"
+        },
+        {
+          "title": "File Handling"
+        },
+        {
+          "title": "Exception Handling"
+        },
+        {
+          "title": "OOP: Classes, Objects, Inheritance, Polymorphism"
+        },
+        {
+          "title": "Introduction to Tkinter (GUI)"
+        },
+        {
+          "title": "NumPy"
+        },
+        {
+          "title": "Pandas"
+        },
+        {
+          "title": "Matplotlib"
+        }
+      ]
+    },
+    {
+      "id": "principles-of-programming",
+      "title": "Principles of Programming Languages",
+      "category": "Programming Languages",
+      "description": "How programming languages are designed and how they work under the hood.",
+      "syllabusStatus": "from-materials",
+      "source": "Module slides in the Principals of Programming folder",
+      "modules": [
+        {
+          "title": "Preliminaries"
+        },
+        {
+          "title": "Evolution of Major Programming Languages"
+        },
+        {
+          "title": "Describing Syntax and Semantics"
+        },
+        {
+          "title": "Lexical and Syntax Analysis"
+        },
+        {
+          "title": "Names, Bindings and Scopes"
+        },
+        {
+          "title": "Data Types"
+        },
+        {
+          "title": "Expressions and Assignment Statements"
+        },
+        {
+          "title": "Control Structures"
+        }
+      ]
+    },
+    {
+      "id": "assembly-x86",
+      "title": "Assembly Language (x86)",
+      "category": "Programming Languages",
+      "syllabusStatus": "title-only",
+      "source": "Assembly x86 folder (empty)",
+      "modules": []
+    },
+    {
+      "id": "dsa-core",
+      "title": "Data Structures & Algorithms: Core",
+      "category": "Data Structures & Algorithms",
+      "description": "Data structures and algorithms are patterns for solving problems. The more you know, the wider the range of problems you can solve, and the better you understand how computers work.",
+      "prerequisites": "No prior experience required",
+      "duration": "18-20 lectures (2 hrs each)",
+      "fee2021": "₹13,000",
+      "syllabusStatus": "documented",
+      "source": "Core_DSA_Syllabus",
+      "modules": [
+        {
+          "title": "Programming Fundamentals",
+          "topics": [
+            "Variables, data types and operators",
+            "Conditionals and loops",
+            "Functions",
+            "Recursion",
+            "Time and space complexity (Big O, Ω, Θ)"
+          ]
+        },
+        {
+          "title": "Arrays",
+          "topics": [
+            "Traversal",
+            "Insertion and deletion",
+            "Linear search",
+            "Binary search"
+          ]
+        },
+        {
+          "title": "Strings",
+          "topics": [
+            "String operations",
+            "Pattern matching",
+            "Palindrome problems"
+          ]
+        },
+        {
+          "title": "Linked Lists",
+          "topics": [
+            "Singly, doubly and circular lists",
+            "Insertion and deletion",
+            "Reversing a list",
+            "Merging lists"
+          ]
+        },
+        {
+          "title": "Stack",
+          "topics": [
+            "Implementation",
+            "Applications"
+          ]
+        },
+        {
+          "title": "Queue",
+          "topics": [
+            "Implementation",
+            "Circular queue",
+            "Deque",
+            "Priority queue"
+          ]
+        },
+        {
+          "title": "Hashing",
+          "topics": [
+            "Hash maps",
+            "Collision handling",
+            "Hashing-based problem solving"
+          ]
+        },
+        {
+          "title": "Sorting",
+          "topics": [
+            "Bubble",
+            "Selection",
+            "Insertion",
+            "Merge",
+            "Quick",
+            "Heap",
+            "Counting",
+            "Radix"
+          ]
+        },
+        {
+          "title": "Searching",
+          "topics": [
+            "Linear search",
+            "Binary search",
+            "Binary search on answer"
+          ]
+        },
+        {
+          "title": "Trees",
+          "topics": [
+            "Binary trees",
+            "Binary search trees",
+            "Inorder, preorder, postorder",
+            "Level order",
+            "Height and diameter",
+            "Lowest common ancestor"
+          ]
+        },
+        {
+          "title": "Heap / Priority Queue",
+          "topics": [
+            "Min and max heap",
+            "Heap operations",
+            "Heap sort"
+          ]
+        },
+        {
+          "title": "Graphs",
+          "topics": [
+            "Representation",
+            "BFS",
+            "DFS",
+            "Connected components",
+            "Cycle detection",
+            "Topological sort",
+            "Dijkstra",
+            "Bellman-Ford",
+            "Floyd-Warshall",
+            "Prim's and Kruskal's MST"
+          ]
+        },
+        {
+          "title": "Greedy Algorithms",
+          "topics": [
+            "Huffman coding"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dsa-advanced",
+      "title": "Data Structures & Algorithms: Advanced",
+      "category": "Data Structures & Algorithms",
+      "description": "Everything in Core DSA plus problem-solving patterns, backtracking, dynamic programming, bit manipulation and advanced structures for interviews and competitive programming.",
+      "syllabusStatus": "documented",
+      "source": "Advance_DSA_Syllabus",
+      "modules": [
+        {
+          "title": "Programming Fundamentals",
+          "topics": [
+            "Variables, data types and operators",
+            "Conditionals and loops",
+            "Functions",
+            "Recursion",
+            "Complexity analysis"
+          ]
+        },
+        {
+          "title": "Arrays",
+          "topics": [
+            "Traversal, insertion, deletion",
+            "Linear and binary search",
+            "Prefix sum",
+            "Sliding window",
+            "Two pointers",
+            "Kadane's algorithm"
+          ]
+        },
+        {
+          "title": "Strings",
+          "topics": [
+            "String operations",
+            "Pattern matching",
+            "Palindromes",
+            "Anagrams",
+            "String hashing",
+            "KMP (optional)",
+            "Rabin-Karp (optional)"
+          ]
+        },
+        {
+          "title": "Linked Lists",
+          "topics": [
+            "Singly, doubly and circular lists",
+            "Insertion and deletion",
+            "Reversal",
+            "Cycle detection",
+            "Merging"
+          ]
+        },
+        {
+          "title": "Stack",
+          "topics": [
+            "Implementation",
+            "Applications",
+            "Balanced parentheses",
+            "Next greater element",
+            "Monotonic stack"
+          ]
+        },
+        {
+          "title": "Queue",
+          "topics": [
+            "Implementation",
+            "Circular queue",
+            "Deque",
+            "Priority queue",
+            "Monotonic queue"
+          ]
+        },
+        {
+          "title": "Hashing",
+          "topics": [
+            "Hash maps and sets",
+            "Frequency counting",
+            "Collision handling",
+            "Hashing-based problem solving"
+          ]
+        },
+        {
+          "title": "Sorting",
+          "topics": [
+            "Bubble",
+            "Selection",
+            "Insertion",
+            "Merge",
+            "Quick",
+            "Heap",
+            "Counting",
+            "Radix"
+          ]
+        },
+        {
+          "title": "Searching",
+          "topics": [
+            "Linear search",
+            "Binary search",
+            "Binary search on answer"
+          ]
+        },
+        {
+          "title": "Trees",
+          "topics": [
+            "Binary trees",
+            "BST",
+            "Traversals",
+            "Level order",
+            "Height and diameter",
+            "LCA"
+          ]
+        },
+        {
+          "title": "Heap / Priority Queue",
+          "topics": [
+            "Min and max heap",
+            "Heap operations",
+            "Heap sort",
+            "Top-K problems",
+            "Priority queue applications"
+          ]
+        },
+        {
+          "title": "Trie",
+          "topics": [
+            "Implementation",
+            "Prefix search",
+            "Autocomplete"
+          ]
+        },
+        {
+          "title": "Graphs",
+          "topics": [
+            "Representation",
+            "BFS and DFS",
+            "Connected components",
+            "Cycle detection",
+            "Topological sort",
+            "Dijkstra, Bellman-Ford, Floyd-Warshall",
+            "Prim's and Kruskal's MST",
+            "Disjoint Set Union"
+          ]
+        },
+        {
+          "title": "Greedy Algorithms",
+          "topics": [
+            "Greedy strategy",
+            "Activity selection",
+            "Fractional knapsack",
+            "Huffman coding",
+            "Interval scheduling"
+          ]
+        },
+        {
+          "title": "Backtracking",
+          "topics": [
+            "N-Queens",
+            "Sudoku solver",
+            "Rat in a maze",
+            "Permutations",
+            "Subsets"
+          ]
+        },
+        {
+          "title": "Divide and Conquer",
+          "topics": [
+            "Merge sort",
+            "Quick sort",
+            "Binary search",
+            "Closest pair of points"
+          ]
+        },
+        {
+          "title": "Dynamic Programming",
+          "topics": [
+            "Memoization and tabulation",
+            "0/1 knapsack",
+            "LCS",
+            "LIS",
+            "Matrix chain multiplication",
+            "Coin change",
+            "Edit distance",
+            "DP on trees",
+            "Bitmask DP"
+          ]
+        },
+        {
+          "title": "Bit Manipulation",
+          "topics": [
+            "Bitwise operators",
+            "Set, clear, toggle bits",
+            "Powers of two",
+            "XOR techniques",
+            "Bitmasking"
+          ]
+        },
+        {
+          "title": "Advanced Data Structures",
+          "topics": [
+            "Segment tree",
+            "Fenwick tree",
+            "Sparse table",
+            "Suffix array",
+            "Suffix tree",
+            "Rolling hash",
+            "Network flow"
+          ]
+        },
+        {
+          "title": "Problem-Solving Practice",
+          "topics": [
+            "Mixed practice across all topics",
+            "Math and number theory"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "analysis-of-algorithms-advanced",
+      "title": "Advanced Analysis of Algorithms",
+      "category": "Data Structures & Algorithms",
+      "description": "Graduate-level algorithm analysis and advanced tree structures.",
+      "syllabusStatus": "from-materials",
+      "source": "Analysis of Algo (Adv) folder",
+      "modules": [
+        {
+          "title": "Asymptotic Notations & Amortized Analysis"
+        },
+        {
+          "title": "Probabilistic Analysis and Randomized Algorithms"
+        },
+        {
+          "title": "Beyond Worst-Case Analysis"
+        },
+        {
+          "title": "Red-Black Trees"
+        },
+        {
+          "title": "KD Trees"
+        },
+        {
+          "title": "R* Trees"
+        }
+      ]
+    },
+    {
+      "id": "competitive-programming",
+      "title": "Competitive Programming",
+      "category": "Data Structures & Algorithms",
+      "syllabusStatus": "from-materials",
+      "source": "CPL (Competitive prog lang) folder: lab experiments",
+      "modules": [
+        {
+          "title": "Linear Search & Linked Lists"
+        },
+        {
+          "title": "Fenwick Tree"
+        },
+        {
+          "title": "Greedy Approach"
+        },
+        {
+          "title": "String Searching with KMP"
+        },
+        {
+          "title": "Graph Problems"
+        },
+        {
+          "title": "Topological Sorting"
+        },
+        {
+          "title": "Substring Problems"
+        },
+        {
+          "title": "Computational Geometry"
+        }
+      ]
+    },
+    {
+      "id": "web-designing",
+      "title": "Web Designing (HTML, CSS, Bootstrap)",
+      "category": "Web Development",
+      "description": "Start web design with the basics of HTML, CSS and Bootstrap, and build interactive websites for any purpose.",
+      "prerequisites": "No prior experience required",
+      "duration": "12-15 lectures (2 hrs each)",
+      "fee2021": "₹6,000",
+      "syllabusStatus": "documented",
+      "source": "Student's Courses Brochure; HTML 5 & CSS 3 folder",
+      "modules": [
+        {
+          "title": "Getting Familiar with the Editor"
+        },
+        {
+          "title": "HTML Programming"
+        },
+        {
+          "title": "HTML5 (Canvas and new features)"
+        },
+        {
+          "title": "Cascading Style Sheets (CSS3)"
+        },
+        {
+          "title": "CSS Flexbox and Grid"
+        },
+        {
+          "title": "Introduction to Bootstrap"
+        },
+        {
+          "title": "Project: Create Your Own Website"
+        }
+      ]
+    },
+    {
+      "id": "full-stack-web",
+      "title": "Full Stack Web Development",
+      "category": "Web Development",
+      "description": "Become a full-stack web developer with just one course.",
+      "prerequisites": "No prior experience required",
+      "duration": "28-30 lectures (2 hrs each)",
+      "fee2021": "₹25,000",
+      "syllabusStatus": "documented",
+      "source": "Student's Courses Brochure",
+      "modules": [
+        {
+          "title": "Getting Familiar with the Editor"
+        },
+        {
+          "title": "HTML Programming"
+        },
+        {
+          "title": "CSS3"
+        },
+        {
+          "title": "Introduction to Bootstrap"
+        },
+        {
+          "title": "HTML5"
+        },
+        {
+          "title": "Project: Create Your Own Website"
+        },
+        {
+          "title": "JavaScript Programming"
+        },
+        {
+          "title": "Modern JavaScript (ES6)"
+        },
+        {
+          "title": "jQuery and AJAX"
+        },
+        {
+          "title": "Angular"
+        },
+        {
+          "title": "Firebase"
+        },
+        {
+          "title": "PHP"
+        },
+        {
+          "title": "MySQL Database"
+        },
+        {
+          "title": "Dynamic Website"
+        },
+        {
+          "title": "3 Projects"
+        }
+      ]
+    },
+    {
+      "id": "javascript-react",
+      "title": "JavaScript & React",
+      "category": "Web Development",
+      "description": "From JavaScript fundamentals to building and deploying a React app, with an assignment after every lecture.",
+      "duration": "18 lectures",
+      "syllabusStatus": "documented",
+      "source": "React Course Outline",
+      "modules": [
+        {
+          "title": "JavaScript Fundamentals",
+          "topics": [
+            "Variables, data types, operators",
+            "Control structures and loops",
+            "Functions and arrow functions",
+            "Objects, arrays, map/filter/reduce",
+            "DOM manipulation",
+            "Closures, hoisting, scope",
+            "Higher-order functions",
+            "Callbacks, Promises, async/await",
+            "ES6+: destructuring, spread/rest, classes, modules",
+            "Event and error handling",
+            "Intro to testing with Jest"
+          ]
+        },
+        {
+          "title": "React Basics",
+          "topics": [
+            "Components, JSX, props",
+            "State and useEffect",
+            "Event handling and conditional rendering",
+            "Forms and controlled components",
+            "React Router and nested routes"
+          ]
+        },
+        {
+          "title": "Advanced React",
+          "topics": [
+            "Context API and hooks",
+            "Redux (optional)",
+            "Working with APIs (Axios / Fetch)"
+          ]
+        },
+        {
+          "title": "Project & Deployment",
+          "topics": [
+            "Planning and building a front-end project",
+            "Deploying to Netlify, Vercel or GitHub Pages",
+            "Final presentation and code review"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "angular",
+      "title": "Angular",
+      "category": "Web Development",
+      "description": "Starts from scratch with no prior Angular needed, and covers everything from setup to deployment.",
+      "syllabusStatus": "documented",
+      "source": "Angular Course Marketing",
+      "modules": [
+        {
+          "title": "Components"
+        },
+        {
+          "title": "Directives"
+        },
+        {
+          "title": "Services"
+        },
+        {
+          "title": "Forms"
+        },
+        {
+          "title": "HTTP Access"
+        },
+        {
+          "title": "Authentication"
+        },
+        {
+          "title": "Optimizing with Modules and Offline Compilation"
+        },
+        {
+          "title": "Angular CLI"
+        },
+        {
+          "title": "Deployment"
+        },
+        {
+          "title": "Complete Course Project"
+        }
+      ]
+    },
+    {
+      "id": "mern",
+      "title": "MERN Stack",
+      "category": "Web Development",
+      "description": "MongoDB, Express, React and Node.js for full-stack JavaScript apps.",
+      "syllabusStatus": "title-only",
+      "source": "Goregaon MERN Batch sheet; student MERN folder",
+      "modules": []
+    },
+    {
+      "id": "android",
+      "title": "Android App Development",
+      "category": "App Development",
+      "description": "Theory and practice to build competence in Android programming, understand the full app development cycle and create Android apps independently.",
+      "prerequisites": "PC/Laptop with at least 8 GB RAM",
+      "duration": "15-18 lectures (2 hrs each)",
+      "fee2021": "₹15,000",
+      "syllabusStatus": "documented",
+      "source": "Student's Courses Brochure; Android Course Contents",
+      "modules": [
+        {
+          "title": "Introduction to Android & Android Studio Setup"
+        },
+        {
+          "title": "UI Components"
+        },
+        {
+          "title": "Application Structure",
+          "topics": [
+            "AndroidManifest.xml",
+            "uses-permission & uses-sdk",
+            "Resources & R.java",
+            "Layouts & drawables",
+            "Activities and the activity lifecycle"
+          ]
+        },
+        {
+          "title": "First App (Hello World)"
+        },
+        {
+          "title": "Emulator / Android Virtual Device"
+        },
+        {
+          "title": "Basic UI Design",
+          "topics": [
+            "Form widgets",
+            "Text fields",
+            "Layouts",
+            "dp/sp vs px",
+            "Event listeners"
+          ]
+        },
+        {
+          "title": "Intents",
+          "topics": [
+            "Explicit intents",
+            "Implicit intents"
+          ]
+        },
+        {
+          "title": "UI Design",
+          "topics": [
+            "Time and date",
+            "Images",
+            "Alert dialogs, toasts and snackbars",
+            "Popups"
+          ]
+        },
+        {
+          "title": "Media & Camera"
+        },
+        {
+          "title": "Handling Permissions"
+        },
+        {
+          "title": "Internet Connectivity & REST API Calls (GET/POST)"
+        },
+        {
+          "title": "Telephony",
+          "topics": [
+            "Making calls",
+            "Sending SMS"
+          ]
+        },
+        {
+          "title": "Menus"
+        },
+        {
+          "title": "Linkify",
+          "topics": [
+            "Web URLs",
+            "Email addresses",
+            "Text"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "react-native",
+      "title": "React Native (Expo)",
+      "category": "App Development",
+      "syllabusStatus": "title-only",
+      "source": "App DEV Courses > React Native - Expo (empty)",
+      "modules": []
+    },
+    {
+      "id": "cordova",
+      "title": "Mobile Programming with Apache Cordova",
+      "category": "App Development",
+      "description": "Hybrid mobile apps with Cordova (SYBSc IT Sem III practicals).",
+      "syllabusStatus": "from-materials",
+      "source": "Mobile Programming practicals doc",
+      "modules": [
+        {
+          "title": "Cordova Setup and Configuration"
+        },
+        {
+          "title": "Hello World App"
+        },
+        {
+          "title": "Project Configuration (config.xml)"
+        },
+        {
+          "title": "Event Listeners"
+        },
+        {
+          "title": "Buttons"
+        },
+        {
+          "title": "Handling the Back Button"
+        },
+        {
+          "title": "Installing Plugins (Plugman)"
+        },
+        {
+          "title": "Battery Status Plugin"
+        },
+        {
+          "title": "Camera Plugin"
+        },
+        {
+          "title": "Contacts Plugin"
+        },
+        {
+          "title": "Device Plugin"
+        }
+      ]
+    },
+    {
+      "id": "machine-learning",
+      "title": "Machine Learning",
+      "category": "Data Science & AI",
+      "description": "Machine learning lets programs learn from data and improve without being explicitly programmed.",
+      "prerequisites": "No prior experience required",
+      "duration": "15-18 lectures (2 hrs each)",
+      "fee2021": "₹20,000",
+      "syllabusStatus": "documented",
+      "source": "Student's Courses Brochure",
+      "modules": [
+        {
+          "title": "Python Basics"
+        },
+        {
+          "title": "Pandas and NumPy"
+        },
+        {
+          "title": "Statistics"
+        },
+        {
+          "title": "Scikit-learn"
+        },
+        {
+          "title": "Supervised Learning"
+        },
+        {
+          "title": "Unsupervised Learning"
+        },
+        {
+          "title": "Natural Language Processing"
+        },
+        {
+          "title": "Projects"
+        }
+      ]
+    },
+    {
+      "id": "data-science",
+      "title": "Data Science with Python",
+      "category": "Data Science & AI",
+      "syllabusStatus": "from-materials",
+      "source": "Data Science folder; Python for Data Analytics",
+      "modules": [
+        {
+          "title": "Python for Data Analytics"
+        },
+        {
+          "title": "NumPy"
+        },
+        {
+          "title": "Pandas"
+        },
+        {
+          "title": "Data Visualization with Matplotlib and Seaborn"
+        },
+        {
+          "title": "SQL for Data Science"
+        },
+        {
+          "title": "R Programming"
+        }
+      ]
+    },
+    {
+      "id": "deep-learning",
+      "title": "Deep Learning",
+      "category": "Data Science & AI",
+      "syllabusStatus": "documented",
+      "source": "Tracker for topics/concepts (Deep Learning sheet), Calista folder",
+      "modules": [
+        {
+          "title": "Neural Networks",
+          "topics": [
+            "Biological neuron",
+            "McCulloch-Pitts neuron",
+            "Perceptron and perceptron learning",
+            "Delta learning",
+            "Multilayer perceptron"
+          ]
+        },
+        {
+          "title": "Deep Neural Networks",
+          "topics": [
+            "Training feedforward DNNs",
+            "Hyperparameter tuning",
+            "Activation functions",
+            "Loss functions",
+            "Optimizers: GD, SGD, mini-batch, momentum, NAG, AdaGrad, RMSProp, Adam",
+            "Regularization: L1/L2, dropout, batch norm, early stopping, data augmentation"
+          ]
+        },
+        {
+          "title": "CNNs & Autoencoders",
+          "topics": [
+            "Convolution, padding, stride",
+            "CNN architecture and variants",
+            "Denoising, sparse and contractive autoencoders"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dbms",
+      "title": "DBMS (SQL and NoSQL Databases)",
+      "category": "Computer Science Core",
+      "syllabusStatus": "from-materials",
+      "source": "DBMS folder: slides and assignments",
+      "modules": [
+        {
+          "title": "SQL Fundamentals"
+        },
+        {
+          "title": "SQL Assignments and Practice (50 questions)"
+        },
+        {
+          "title": "Normalization"
+        },
+        {
+          "title": "Canonical Cover / Functional Dependencies"
+        },
+        {
+          "title": "PL/SQL"
+        },
+        {
+          "title": "ER Diagrams"
+        }
+      ]
+    },
+    {
+      "id": "operating-systems",
+      "title": "Operating Systems",
+      "category": "Computer Science Core",
+      "syllabusStatus": "from-materials",
+      "source": "OS slides (intro only)",
+      "modules": [
+        {
+          "title": "Introduction to OS",
+          "topics": [
+            "Abstraction and arbitration",
+            "Kernel vs user space",
+            "Memory, process, file and I/O management",
+            "Monolithic, micro and hybrid kernels",
+            "System calls"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "computer-networks",
+      "title": "Computer Networks",
+      "category": "Computer Science Core",
+      "syllabusStatus": "title-only",
+      "source": "Listed in 'Syllabus for Courses'; Calista folder (only Pure/Slotted ALOHA noted)",
+      "modules": []
+    },
+    {
+      "id": "system-design",
+      "title": "System Design",
+      "category": "Computer Science Core",
+      "syllabusStatus": "from-materials",
+      "source": "System Design slides",
+      "modules": [
+        {
+          "title": "What System Design Is: HLD vs LLD"
+        },
+        {
+          "title": "Monolithic vs Microservices"
+        },
+        {
+          "title": "Latency and Throughput"
+        },
+        {
+          "title": "Redundancy and Replication"
+        },
+        {
+          "title": "Availability, Fault Tolerance and Consistency"
+        },
+        {
+          "title": "CAP Theorem"
+        },
+        {
+          "title": "Logical Time and Lamport Clocks"
+        },
+        {
+          "title": "Load Balancers and Algorithms"
+        },
+        {
+          "title": "Caching, CDNs and Caching Strategies"
+        }
+      ]
+    },
+    {
+      "id": "cryptography-security",
+      "title": "Cryptography & System Security",
+      "category": "Computer Science Core",
+      "syllabusStatus": "documented",
+      "source": "Tracker for topics/concepts (CSS sheet), Calista folder",
+      "modules": [
+        {
+          "title": "Cryptography Basics",
+          "topics": [
+            "Security goals, attacks, services, mechanisms",
+            "Modular arithmetic, Euclidean and extended Euclidean algorithms",
+            "Mono- and polyalphabetic ciphers",
+            "Vigenère, Playfair, Hill ciphers",
+            "Transposition ciphers"
+          ]
+        },
+        {
+          "title": "Symmetric & Asymmetric Cryptography",
+          "topics": [
+            "Block ciphers, DES, Double/Triple DES",
+            "RC4",
+            "RSA",
+            "Diffie-Hellman",
+            "X.509 certificates, PKI"
+          ]
+        },
+        {
+          "title": "Cryptographic Hash Functions",
+          "topics": [
+            "Properties of secure hashes",
+            "MD5, SHA-1",
+            "MAC, HMAC"
+          ]
+        },
+        {
+          "title": "Authentication Protocols & Digital Signatures",
+          "topics": [
+            "Needham-Schroeder",
+            "Kerberos"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ethical-hacking",
+      "title": "Cyber Security / Ethical Hacking",
+      "category": "Computer Science Core",
+      "syllabusStatus": "title-only",
+      "source": "Ethical hacking Course slides (blank)",
+      "modules": []
+    },
+    {
+      "id": "photoshop",
+      "title": "Adobe Photoshop",
+      "category": "Design & Marketing",
+      "syllabusStatus": "title-only",
+      "source": "Design Courses Flow (only two reference Udemy links)",
+      "modules": []
+    },
+    {
+      "id": "google-analytics",
+      "title": "Google Analytics",
+      "category": "Design & Marketing",
+      "syllabusStatus": "title-only",
+      "source": "What Is Google Analytics doc",
+      "modules": []
+    },
+    {
+      "id": "school-academic",
+      "title": "Grade 11 & 12 Computer Science (CS1, CS2, IT)",
+      "category": "Academic Tuition",
+      "description": "Board-exam coaching for FYJC/HSC Computer Science and IT, including C++.",
+      "syllabusStatus": "title-only",
+      "source": "Grade 11 and Grade 12 - HSC folders",
+      "modules": []
+    },
+    {
+      "id": "university-academic",
+      "title": "University Engineering & BSc IT Subjects",
+      "category": "Academic Tuition",
+      "description": "Semester coaching for Mumbai University, DJ Sanghvi, SPIT, NMIMS, Somaiya and others: C, Java, Python, DSA, DAA, Web Programming and more.",
+      "syllabusStatus": "title-only",
+      "source": "MU - Syllabus, DJ Sanghvi Papers, NMIMS and student folders",
+      "modules": [
+        {
+          "title": "Computer Networks",
+          "courseId": "computer-networks"
+        },
+        {
+          "title": "Cryptography & System Security",
+          "courseId": "cryptography-security"
+        }
+      ]
+    }
+  ]
+}
