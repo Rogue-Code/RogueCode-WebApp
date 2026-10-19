@@ -1,100 +1,135 @@
 "use server";
 
+import { events } from "@/data/community";
 import { site } from "@/data/site";
-import { sendEnquiryEmail } from "@/lib/mail";
+import { emailDomainAcceptsMail, sendConfirmationEmail, sendEnquiryEmail } from "@/lib/mail";
+import { formValues, normalizePhone, validateFields, type FieldErrors } from "@/lib/validation";
 
 export type FormState = {
   status: "idle" | "success" | "error";
   message?: string;
+  /** Per-field problems, shown under each input. */
+  errors?: FieldErrors;
+  /** What the visitor typed, so the form can refill itself after an error. */
+  values?: Record<string, string>;
+  /** Set on success: the address the confirmation email went to, if it was sent. */
+  confirmedTo?: string;
 };
 
-const sendFailed: FormState = {
+const sendFailed = (values: Record<string, string>): FormState => ({
   status: "error",
   message: `Sorry, that didn't go through. Please email us at ${site.contact.email} or try again.`,
-};
+  values,
+});
 
-function field(formData: FormData, name: string) {
-  const value = formData.get(name);
-  return typeof value === "string" ? value.trim() : "";
+/** Shared checks: required fields, phone and email format, and that the email's domain exists. */
+async function check(values: Record<string, string>): Promise<FormState | undefined> {
+  const errors = validateFields(values);
+  if (!errors.email && !(await emailDomainAcceptsMail(values.email))) {
+    errors.email = "That email domain doesn't seem to exist. Please check for typos.";
+  }
+  if (Object.keys(errors).length === 0) return undefined;
+  return { status: "error", message: "Please fix the highlighted fields.", errors, values };
 }
 
 /** Homepage contact form. */
 export async function submitContact(_prev: FormState, formData: FormData): Promise<FormState> {
-  const enquiry = {
-    interest: field(formData, "interest"),
-    name: field(formData, "name"),
-    contact: field(formData, "contact"),
-    message: field(formData, "message"),
+  const values = formValues(formData);
+  const invalid = await check(values);
+  if (invalid) return invalid;
+
+  const phone = normalizePhone(values.phone)!;
+  const details = {
+    "Interested in": values.interest,
+    Name: values.name,
+    Phone: phone,
+    Email: values.email,
+    Message: values.message,
   };
 
-  if (!enquiry.name || !enquiry.contact) {
-    return { status: "error", message: "Please add your name and a phone number or email." };
+  if (!(await sendEnquiryEmail(`New enquiry: ${values.name}`, details, values.email))) {
+    return sendFailed(values);
   }
+  const confirmed = await sendConfirmationEmail({
+    to: values.email,
+    subject: "We've got your message — Rogue Code",
+    name: values.name,
+    intro: "Thanks for getting in touch! Your message has reached our team and we'll get back to you shortly.",
+    fields: details,
+  });
 
-  const sent = await sendEnquiryEmail(
-    `New enquiry: ${enquiry.name}`,
-    {
-      "Interested in": enquiry.interest,
-      Name: enquiry.name,
-      "Phone / email": enquiry.contact,
-      Message: enquiry.message,
-    },
-    enquiry.contact,
-  );
-  if (!sent) return sendFailed;
-
-  return { status: "success", message: "Thanks! We'll get back to you shortly." };
+  return {
+    status: "success",
+    message: "Thanks! We'll get back to you shortly.",
+    confirmedTo: confirmed ? values.email : undefined,
+  };
 }
 
 /** Event registration form on /events/[slug]. */
 export async function registerForEvent(_prev: FormState, formData: FormData): Promise<FormState> {
-  const registration = {
-    event: field(formData, "event"),
-    name: field(formData, "name"),
-    email: field(formData, "email"),
-    phone: field(formData, "phone"),
-    college: field(formData, "college"),
+  const values = formValues(formData);
+  const invalid = await check(values);
+  if (invalid) return invalid;
+
+  const event = events.find((e) => e.slug === values.event);
+  const eventTitle = event?.title ?? values.event;
+  const phone = normalizePhone(values.phone)!;
+  const details = {
+    Event: eventTitle,
+    Name: values.name,
+    Email: values.email,
+    Phone: phone,
+    "College / company": values.college,
   };
 
-  if (!registration.name || !registration.email || !registration.phone) {
-    return { status: "error", message: "Please add your name, email and phone." };
-  }
-
-  // TODO: also save the registration against the event in Firestore and email the attendee.
+  // TODO: also save the registration against the event in Firestore.
   const sent = await sendEnquiryEmail(
-    `Event registration: ${registration.event} — ${registration.name}`,
-    {
-      Event: registration.event,
-      Name: registration.name,
-      Email: registration.email,
-      Phone: registration.phone,
-      "College / company": registration.college,
-    },
-    registration.email,
+    `Event registration: ${eventTitle} — ${values.name}`,
+    details,
+    values.email,
   );
-  if (!sent) return sendFailed;
+  if (!sent) return sendFailed(values);
 
-  return { status: "success", message: "You're registered! Check your email for the details." };
+  const confirmed = await sendConfirmationEmail({
+    to: values.email,
+    subject: `You're registered: ${eventTitle}`,
+    name: values.name,
+    intro: `You're registered for ${eventTitle}. Keep this email — we'll send any joining details before the event.`,
+    fields: event
+      ? { ...details, When: `${event.day} ${event.month}, ${event.time}`, Where: event.venue }
+      : details,
+  });
+
+  return {
+    status: "success",
+    message: "You're registered!",
+    confirmedTo: confirmed ? values.email : undefined,
+  };
 }
 
 /** Academy "book a free demo class" form. */
 export async function bookDemo(_prev: FormState, formData: FormData): Promise<FormState> {
-  const booking = {
-    name: field(formData, "name"),
-    phone: field(formData, "phone"),
-    course: field(formData, "course"),
-  };
+  const values = formValues(formData);
+  const invalid = await check(values);
+  if (invalid) return invalid;
 
-  if (!booking.name || !booking.phone) {
-    return { status: "error", message: "Please add your name and phone number." };
+  const phone = normalizePhone(values.phone)!;
+  const details = { Name: values.name, Phone: phone, Email: values.email, Course: values.course };
+
+  if (!(await sendEnquiryEmail(`Demo class request: ${values.name}`, details, values.email))) {
+    return sendFailed(values);
   }
-
-  const sent = await sendEnquiryEmail(`Demo class request: ${booking.name}`, {
-    Name: booking.name,
-    Phone: booking.phone,
-    Course: booking.course,
+  const confirmed = await sendConfirmationEmail({
+    to: values.email,
+    subject: "Your free demo class request — Rogue Academy",
+    name: values.name,
+    intro: `Thanks for booking a free demo class! We'll call you on ${phone} to fix a time that suits you.`,
+    fields: details,
   });
-  if (!sent) return sendFailed;
 
-  return { status: "success", message: "You're booked in! We'll call you back to confirm." };
+  return {
+    status: "success",
+    message: "You're booked in! We'll call you back to confirm.",
+    confirmedTo: confirmed ? values.email : undefined,
+  };
 }

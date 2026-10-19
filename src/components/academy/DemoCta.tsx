@@ -1,6 +1,7 @@
 "use client";
 
 import { useActionState } from "react";
+import { FieldError, SentDialog, useFormChecks } from "@/components/ui/FormFeedback";
 import { bookDemo, type FormState } from "@/lib/actions/forms";
 
 const fieldClasses =
@@ -10,6 +11,10 @@ export function DemoCta({ courseTitles, defaultCourse }: { courseTitles: string[
   const [state, formAction, pending] = useActionState<FormState, FormData>(bookDemo, {
     status: "idle",
   });
+  const { formProps, errorFor, valueOf, successOpen, closeSuccess } = useFormChecks(state);
+
+  const input = (name: string) =>
+    `px-4 ${fieldClasses} ${errorFor(name) ? "border-2 border-red-700" : ""}`;
 
   return (
     <section id="demo" className="container-page pb-28">
@@ -24,20 +29,51 @@ export function DemoCta({ courseTitles, defaultCourse }: { courseTitles: string[
           </p>
         </div>
 
-        <form action={formAction} className="flex flex-[1_1_420px] flex-col gap-3.5">
+        <form action={formAction} {...formProps} className="flex flex-[1_1_420px] flex-col gap-3.5">
+          <label className="flex flex-col gap-1.5 text-sm font-medium">
+            Name
+            <input
+              type="text"
+              name="name"
+              autoComplete="name"
+              defaultValue={valueOf("name")}
+              aria-invalid={!!errorFor("name")}
+              className={input("name")}
+            />
+            <FieldError message={errorFor("name")} tone="gold" />
+          </label>
           <div className="flex flex-wrap gap-3.5">
             <label className="flex flex-[1_1_180px] flex-col gap-1.5 text-sm font-medium">
-              Name
-              <input type="text" name="name" required autoComplete="name" className={`px-4 ${fieldClasses}`} />
+              Phone
+              <input
+                type="tel"
+                name="phone"
+                autoComplete="tel"
+                inputMode="tel"
+                placeholder="98765 43210"
+                defaultValue={valueOf("phone")}
+                aria-invalid={!!errorFor("phone")}
+                className={input("phone")}
+              />
+              <FieldError message={errorFor("phone")} tone="gold" />
             </label>
             <label className="flex flex-[1_1_180px] flex-col gap-1.5 text-sm font-medium">
-              Phone
-              <input type="tel" name="phone" required autoComplete="tel" className={`px-4 ${fieldClasses}`} />
+              Email
+              <input
+                type="email"
+                name="email"
+                autoComplete="email"
+                placeholder="you@example.com"
+                defaultValue={valueOf("email")}
+                aria-invalid={!!errorFor("email")}
+                className={input("email")}
+              />
+              <FieldError message={errorFor("email")} tone="gold" />
             </label>
           </div>
           <label className="flex flex-col gap-1.5 text-sm font-medium">
             Interested in
-            <select name="course" defaultValue={defaultCourse} className={`px-3.5 ${fieldClasses}`}>
+            <select name="course" defaultValue={valueOf("course") ?? defaultCourse} className={`px-3.5 ${fieldClasses}`}>
               {courseTitles.map((title) => (
                 <option key={title}>{title}</option>
               ))}
@@ -52,12 +88,19 @@ export function DemoCta({ courseTitles, defaultCourse }: { courseTitles: string[
             >
               {pending ? "Booking…" : "Book my free class"}
             </button>
-            {state.message && (
-              <p role="status" className="font-medium text-ink">
+            {state.status === "error" && state.message && (
+              <p role="status" className="font-semibold text-ink">
                 {state.message}
               </p>
             )}
           </div>
+          <SentDialog
+            open={successOpen}
+            onClose={closeSuccess}
+            title="Demo class booked!"
+            message={state.message}
+            confirmedTo={state.confirmedTo}
+          />
         </form>
       </div>
     </section>
