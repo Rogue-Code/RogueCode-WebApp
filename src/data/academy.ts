@@ -160,7 +160,7 @@ export const trainers = Array.from({ length: 4 }, (_, i) => ({
   name: "[Trainer name]",
   role: "[Role]",
   course: "[Course]",
-  photo: undefined as string | undefined,
+  photo: i === 0 ? "/images/trainers/sakshi.jpeg" : (undefined as string | undefined),
 }));
 
 export const faqs = [

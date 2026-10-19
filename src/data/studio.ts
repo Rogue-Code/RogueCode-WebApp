@@ -58,7 +58,12 @@ export type Project = {
 
 export const projects: Project[] = [
   { slug: "project-1", name: "[Project name]", client: "[CLIENT]", type: "WEB APP" },
-  { slug: "project-2", name: "[Project name]", type: "MOBILE APP" },
+  {
+    slug: "project-2",
+    name: "[Project name]",
+    type: "MOBILE APP",
+    image: "/images/work/mobile-app-mockups.png",
+  },
   { slug: "project-3", name: "[Project name]", type: "WEBSITE" },
 ];
 

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PostRow } from "@/components/community/PostRow";
+import { Photo } from "@/components/ui/Photo";
 import { getPost, getPosts } from "@/lib/data/community";
 
 export async function generateStaticParams() {
@@ -34,7 +35,12 @@ export default async function PostPage({ params }: PageProps<"/blog/[slug]">) {
           <span className="font-semibold text-paper">{post.author}</span> · {post.date}
         </p>
       </header>
-      <div className="placeholder-stripes mx-auto mt-12 aspect-[21/9] max-w-260 rounded-3xl border border-edge" />
+      <Photo
+        src={post.image}
+        alt=""
+        sizes="(min-width: 1088px) 1040px, 100vw"
+        className="mx-auto mt-12 aspect-[21/9] max-w-260 rounded-3xl border border-edge"
+      />
       <div className="mx-auto mt-14 flex max-w-170 flex-col gap-6 text-[19px] leading-[1.7] text-paper-soft">
         {post.body.map((paragraph, i) => (
           <p key={i}>{paragraph}</p>

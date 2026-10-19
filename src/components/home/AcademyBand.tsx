@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ButtonLink } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Icon } from "@/components/ui/Icon";
+import { Photo } from "@/components/ui/Photo";
 import { courses, featuredCourseSlugs } from "@/data/academy";
 
 const reasons = [
@@ -45,6 +46,13 @@ export function AcademyBand() {
             View all courses
           </ButtonLink>
         </div>
+
+        <Photo
+          src="/images/photos/classroom.jpeg"
+          alt="A trainer helping students with their code in the Rogue Code classroom"
+          sizes="(min-width: 1280px) 1184px, 100vw"
+          className="mb-14 aspect-[21/9] rounded-[20px] border border-lilac-edge"
+        />
 
         <div className="flex flex-wrap gap-5">
           {featured.map((course) => (

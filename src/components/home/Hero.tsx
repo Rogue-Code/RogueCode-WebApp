@@ -1,4 +1,11 @@
 import { ButtonLink } from "@/components/ui/Button";
+import { TypewriterHeading } from "./TypewriterHeading";
+
+const headingLines = [
+  { text: "We code." },
+  { text: "We compile." },
+  { text: "We run.", className: "text-gold" },
+];
 
 export function Hero() {
   return (
@@ -8,13 +15,10 @@ export function Hero() {
         <span>run --studio --academy</span>
         <span aria-hidden="true" className="inline-block h-5 w-2.5 bg-gold" />
       </p>
-      <h1 className="mt-7 text-[clamp(56px,10.5vw,156px)] leading-[0.9] font-extrabold tracking-[-0.05em]">
-        We code.
-        <br />
-        We compile.
-        <br />
-        <span className="text-gold">We run.</span>
-      </h1>
+      <TypewriterHeading
+        lines={headingLines}
+        className="mt-7 text-[clamp(56px,10.5vw,156px)] leading-[0.9] font-extrabold tracking-[-0.05em]"
+      />
       <div className="mt-14 flex flex-wrap items-end justify-between gap-8">
         <p className="max-w-145 text-[clamp(18px,1.6vw,22px)] leading-normal text-paper-soft">
           Rogue Code is a software studio and a coding academy under one roof. We build web and

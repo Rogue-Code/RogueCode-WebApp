@@ -1,20 +1,26 @@
 import Link from "next/link";
 import { ArrowLink } from "@/components/ui/Button";
 import { SectionTitle } from "@/components/ui/Eyebrow";
+import { Photo } from "@/components/ui/Photo";
 import { projects, type Project } from "@/data/studio";
 
-function Screenshot() {
+function Screenshot({ project, large }: { project: Project; large: boolean }) {
   return (
-    <div className="placeholder-stripes flex aspect-[16/10] items-center justify-center rounded-[20px] border border-edge font-mono text-[13px] text-subtle">
-      [PROJECT SCREENSHOT]
-    </div>
+    <Photo
+      src={project.image}
+      alt={`${project.name} screenshot`}
+      sizes={large ? "(min-width: 1280px) 760px, 100vw" : "(min-width: 1280px) 400px, 100vw"}
+      contain
+      label="[PROJECT SCREENSHOT]"
+      className="aspect-[16/10] rounded-[20px] border border-edge bg-royal"
+    />
   );
 }
 
 function ProjectCard({ project, large = false }: { project: Project; large?: boolean }) {
   return (
     <Link href="#work" className={`flex flex-col text-paper ${large ? "gap-4.5" : "gap-3.5"}`}>
-      <Screenshot />
+      <Screenshot project={project} large={large} />
       <div className={`flex flex-wrap items-baseline justify-between ${large ? "gap-4" : "gap-3"}`}>
         <span className={large ? "text-[26px] font-semibold tracking-[-0.02em]" : "text-xl font-semibold"}>
           {project.name}

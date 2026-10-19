@@ -5,37 +5,45 @@
   --font-sans: var(--font-outfit), system-ui, sans-serif;
   --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
 
-  /* Dark surfaces */
-  --color-ink: #05073a;
-  --color-ink-deep: #03041e;
-  --color-royal: #0c12a0;
-  --color-line: #1c2170;
-  --color-edge: #252a7a;
-  --color-edge-strong: #3a3f8f;
-  --color-outline: #474ca0;
+  /* Dark surfaces — near-black neutrals (`royal` is the raised card/panel surface) */
+  --color-ink: #0b0c10;
+  --color-ink-deep: #060709;
+  --color-royal: #15161c;
+  --color-line: #1f2128;
+  --color-edge: #26282f;
+  --color-edge-strong: #34363e;
+  --color-outline: #464852;
 
   /* Text on dark */
-  --color-paper: #f7f8ff;
-  --color-paper-soft: #d6d9f5;
-  --color-muted: #b4b8e6;
-  --color-subtle: #9ca1da;
+  --color-paper: #f5f5f4;
+  --color-paper-soft: #d4d4d6;
+  --color-muted: #a3a4aa;
+  --color-subtle: #8a8c93;
+
+  /* Typewriter cursor */
+  --animate-blink: blink 1s step-end infinite;
+  @keyframes blink {
+    50% {
+      opacity: 0;
+    }
+  }
 
   /* Accent */
   --color-gold: #f3b303;
 
-  /* Light band */
-  --color-lilac: #f0f0ff;
-  --color-lilac-edge: #d5d7f5;
-  --color-lilac-line: #d0d2f2;
-  --color-lilac-rule: #e4e5fa;
-  --color-lilac-chip: #b9bce8;
+  /* Light band — plain off-white */
+  --color-lilac: #f4f4f2;
+  --color-lilac-edge: #e2e2df;
+  --color-lilac-line: #dcdcd8;
+  --color-lilac-rule: #ebebe8;
+  --color-lilac-chip: #c8c8c3;
 
   /* Text on light / gold */
-  --color-ink-800: #10135a;
-  --color-ink-700: #1a1d6b;
-  --color-ink-600: #2e3280;
-  --color-ink-500: #3c408a;
-  --color-ink-400: #4a4e99;
+  --color-ink-800: #18181b;
+  --color-ink-700: #27272a;
+  --color-ink-600: #3f3f46;
+  --color-ink-500: #52525b;
+  --color-ink-400: #71717a;
 }
 
 @layer base {
@@ -78,5 +86,5 @@
 
 /* Striped placeholder for images that haven't been supplied yet */
 @utility placeholder-stripes {
-  background: repeating-linear-gradient(135deg, #0a0e55 0 12px, #0e1366 12px 24px);
+  background: repeating-linear-gradient(135deg, #121318 0 12px, #17181e 12px 24px);
 }

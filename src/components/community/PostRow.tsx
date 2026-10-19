@@ -1,10 +1,11 @@
 import Link from "next/link";
+import { Photo } from "@/components/ui/Photo";
 import type { Post } from "@/data/community";
 
 export function PostRow({ post }: { post: Post }) {
   return (
     <Link href={`/blog/${post.slug}`} className="group flex items-center gap-5 text-paper hover:text-paper">
-      <span className="placeholder-stripes aspect-[4/3] w-35 flex-none rounded-[14px] border border-edge" />
+      <Photo src={post.image} alt="" sizes="140px" className="aspect-[4/3] w-35 flex-none rounded-[14px] border border-edge" />
       <span>
         <span className="mb-1.5 block font-mono text-xs text-muted">
           {post.category} · {post.date}
@@ -18,7 +19,12 @@ export function PostRow({ post }: { post: Post }) {
 export function PostCard({ post }: { post: Post }) {
   return (
     <Link href={`/blog/${post.slug}`} className="group flex flex-col gap-4 text-paper hover:text-paper">
-      <span className="placeholder-stripes aspect-[16/10] rounded-[20px] border border-edge transition-colors group-hover:border-gold" />
+      <Photo
+        src={post.image}
+        alt=""
+        sizes="(min-width: 1280px) 400px, (min-width: 768px) 50vw, 100vw"
+        className="aspect-[16/10] rounded-[20px] border border-edge transition-colors group-hover:border-gold"
+      />
       <span className="font-mono text-xs text-muted">
         {post.category} · {post.readMinutes} MIN READ
       </span>

@@ -35,6 +35,7 @@ export const products: Product[] = [
     mrp: 299,
     description:
       "[Product description — material, size and print details for the Rogue Code tote bag.]",
+    image: "/images/shop/rc-tote-bag.jpg",
     inStock: true,
   },
   {
@@ -47,6 +48,7 @@ export const products: Product[] = [
     description:
       "[Product description — fabric, fit and print details for the Rogue Code t-shirt.]",
     sizes: ["S", "M", "L", "XL", "XXL"],
+    image: "/images/shop/rc-tshirt.jpg",
     inStock: true,
   },
 ];

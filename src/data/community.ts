@@ -91,6 +91,7 @@ export const posts: Post[] = [
     title: "Blind 75",
     excerpt: "Blind 75 are basically 75 problems that cover the patterns most coding interviews test.",
     body: ["[Full post content from the existing blog.]"],
+    image: "/images/photos/code-on-screen.jpg",
   },
   {
     slug: "post-1",

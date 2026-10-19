@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Photo } from "@/components/ui/Photo";
 import type { Product } from "@/data/products";
 import { discountPercent, formatPrice } from "@/lib/data/products";
 
@@ -12,14 +13,13 @@ export function ProductImage({
   compact?: boolean;
 }) {
   return (
-    <div
-      role="img"
-      aria-label={product.name}
-      className={`placeholder-stripes flex items-center justify-center rounded-[20px] border border-edge font-mono text-[13px] text-subtle ${className}`}
-    >
-      {/* TODO: replace with next/image once product photos are available */}
-      {!compact && "[PRODUCT PHOTO]"}
-    </div>
+    <Photo
+      src={product.image}
+      alt={product.name}
+      sizes={compact ? "96px" : "(min-width: 1280px) 600px, (min-width: 768px) 50vw, 100vw"}
+      label={compact ? undefined : "[PRODUCT PHOTO]"}
+      className={`rounded-[20px] border border-edge ${className}`}
+    />
   );
 }
 
