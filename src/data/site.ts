@@ -9,8 +9,9 @@ export const site = {
     address: "25, Dattani Trade Centre, Near New BMC Office, Shanti Nagar, Borivali West, Mumbai, Maharashtra 400092",
   },
   compilerUrl: "https://rc-js-compiler.netlify.app/",
+  instagram: { handle: "@rogue.code", href: "https://www.instagram.com/rogue.code/" },
   socials: [
-    { label: "Instagram", href: "#" },
+    { label: "Instagram", href: "https://www.instagram.com/rogue.code/" },
     { label: "LinkedIn", href: "#" },
     { label: "YouTube", href: "#" },
     { label: "Facebook", href: "#" },

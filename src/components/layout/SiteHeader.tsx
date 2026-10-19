@@ -3,13 +3,12 @@ import { Suspense } from "react";
 import { ButtonLink } from "@/components/ui/Button";
 import type { HeaderConfig } from "@/data/site";
 import { CartButton, MobileMenu, NavLinks } from "./HeaderClient";
+import { LogoMark } from "./LogoMark";
 
 export function Logo({ suffix }: { suffix?: string }) {
   return (
     <>
-      <span className="inline-flex size-9 items-center justify-center rounded-lg bg-gold font-mono text-sm font-medium text-ink">
-        &gt;_
-      </span>
+      <LogoMark />
       <span>
         rogue<span className="text-gold">/</span>code
         {suffix && <span className="font-medium text-muted"> {suffix}</span>}

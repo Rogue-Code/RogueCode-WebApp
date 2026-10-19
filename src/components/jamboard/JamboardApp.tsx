@@ -3,6 +3,7 @@
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { LogoMark } from "@/components/layout/LogoMark";
 import { Icon } from "@/components/ui/Icon";
 import { deleteScene, loadIndex, newBoardId, saveIndex, type BoardMeta } from "./storage";
 
@@ -49,9 +50,7 @@ export default function JamboardApp() {
     <div className="fixed inset-0 flex flex-col bg-ink">
       <header className="flex flex-wrap items-center gap-3 border-b border-line px-4 py-2.5">
         <Link href="/academy" className="flex items-center gap-2 font-bold text-paper" aria-label="Back to Rogue Academy">
-          <span className="inline-flex size-8 items-center justify-center rounded-md bg-gold font-mono text-xs font-medium text-ink">
-            &gt;_
-          </span>
+          <LogoMark className="h-7" />
           <span className="hidden sm:inline">jamboard</span>
         </Link>
 

@@ -177,3 +177,27 @@ export const faqs = [
   { question: "Can I pay in instalments?", answer: "[Your answer.]" },
   { question: "Do you help with internships or jobs?", answer: "[Your answer.]" },
 ];
+
+/** Posts from @rogue.code shown on the Academy page. Images are saved copies in public/images/instagram. */
+export const instagramPosts = [
+  {
+    href: "https://www.instagram.com/rogue.code/p/DIjhofeStm-/",
+    image: "/images/instagram/student-sumeet-suthar.jpg",
+    alt: "Sumeet Suthar receiving his Rogue Code certificate, with his review of the course",
+  },
+  {
+    href: "https://www.instagram.com/rogue.code/p/DIjMuM0yaXJ/",
+    image: "/images/instagram/student-akshat-lodha.jpg",
+    alt: "Akshat Lodha receiving his Rogue Code certificate, with his review of the course",
+  },
+  {
+    href: "https://www.instagram.com/rogue.code/p/DIjLuB2SEhp/",
+    image: "/images/instagram/student-fenil-shah.jpg",
+    alt: "Fenil Shah receiving his Rogue Code certificate, with his review of the course",
+  },
+  {
+    href: "https://www.instagram.com/rogue.code/p/CZd6X1grKBz/",
+    image: "/images/instagram/angular-webinar.jpg",
+    alt: "Poster for a Rogue Code live webinar: how to build a single page application using Angular",
+  },
+];
