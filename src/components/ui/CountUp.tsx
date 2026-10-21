@@ -8,7 +8,16 @@ const DURATION_MS = 1400;
  * Counts the first number in `text` up from 0 when it scrolls into view
  * ("Up to 15 students" → "Up to 0… 15 students"). Text without a number renders as is.
  */
-export function CountUp({ text, className }: { text: string; className?: string }) {
+export function CountUp({
+  text,
+  className,
+  numberClassName = "text-gold",
+}: {
+  text: string;
+  className?: string;
+  /** Classes for the counting number itself; gold by default. */
+  numberClassName?: string;
+}) {
   const match = text.match(/\d+/);
   const target = match ? Number(match[0]) : 0;
   const [value, setValue] = useState(0);
@@ -54,7 +63,7 @@ export function CountUp({ text, className }: { text: string; className?: string 
       <span aria-hidden="true">
         {before}
         {/* Reserve the final number's width so the line doesn't jiggle while counting */}
-        <span className="relative inline-block text-gold tabular-nums">
+        <span className={`relative inline-block tabular-nums ${numberClassName}`}>
           <span className="invisible">{match[0]}</span>
           <span className="absolute inset-0 text-right">{value}</span>
         </span>

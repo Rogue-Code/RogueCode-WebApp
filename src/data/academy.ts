@@ -52,7 +52,7 @@ export function courseSummary(course: Course) {
 }
 
 export const academyFacts = [
-  { label: "BATCH SIZE", value: "Up to 15 students" },
+  { label: "BATCH SIZE", value: "Up to 10 students" },
   { label: "MODE", value: "Online + In Person" },
   { label: "TIMINGS", value: "[Weekday / Weekend]" },
   { label: "ON COMPLETION", value: "Certificate + Portfolio" },

@@ -33,7 +33,7 @@ export default function AcademyPage() {
       <GoogleReviews />
       <InstagramFeed />
       <Faq />
-      <DemoCta courseTitles={courses.map((c) => c.title)} />
+      <DemoCta courseTitles={courses.map((c) => c.title)} className="py-28" />
     </>
   );
 }
