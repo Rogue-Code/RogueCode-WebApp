@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Eyebrow, SectionTitle } from "@/components/ui/Eyebrow";
 import { CourseIcon } from "./CourseIcon";
 import { courseHref, courseSummary, flagshipCourseId, type Course } from "@/data/academy";
@@ -76,13 +76,37 @@ function searchText(course: Course) {
 export function CourseCatalog({ courses, categories }: { courses: Course[]; categories: string[] }) {
   const [filter, setFilter] = useState("all");
   const [query, setQuery] = useState("");
-  const words = query.toLowerCase().split(/s+/).filter(Boolean);
+  const words = query.toLowerCase().split(/\s+/).filter(Boolean);
   const visible = courses.filter(
     (c) =>
       (filter === "all" || c.category === filter) &&
       words.every((w) => searchText(c).includes(w)),
   );
   const filters = [{ value: "all", label: "All" }, ...categories.map((c) => ({ value: c, label: c }))];
+
+  const track = useRef<HTMLDivElement>(null);
+  const [edges, setEdges] = useState({ start: true, end: false, progress: 0 });
+
+  function updateEdges() {
+    const el = track.current;
+    if (!el) return;
+    const max = el.scrollWidth - el.clientWidth;
+    setEdges({ start: el.scrollLeft <= 4, end: el.scrollLeft >= max - 4, progress: max > 0 ? el.scrollLeft / max : 1 });
+  }
+
+  /** Scrolls by roughly one screenful of cards. */
+  function page(direction: 1 | -1) {
+    const el = track.current;
+    if (!el) return;
+    el.scrollBy({ left: direction * el.clientWidth * 0.9, behavior: "smooth" });
+  }
+
+  // A new filter or search starts the carousel from the beginning
+  function rewind() {
+    track.current?.scrollTo({ left: 0 });
+    setEdges({ start: true, end: false, progress: 0 });
+    requestAnimationFrame(updateEdges);
+  }
 
   return (
     <section id="courses" className="container-page py-28">
@@ -105,7 +129,10 @@ export function CourseCatalog({ courses, categories }: { courses: Course[]; cate
             <input
               type="search"
               value={query}
-              onChange={(e) => setQuery(e.target.value)}
+              onChange={(e) => {
+                setQuery(e.target.value);
+                rewind();
+              }}
               placeholder="Search courses, e.g. React, SQL, DSA"
               className="min-h-13 w-full rounded-full border border-outline bg-royal pr-5 pl-12 text-base text-paper placeholder:text-subtle focus:border-paper focus:outline-none"
             />
@@ -119,7 +146,10 @@ export function CourseCatalog({ courses, categories }: { courses: Course[]; cate
                 key={f.value}
                 type="button"
                 aria-pressed={on}
-                onClick={() => setFilter(f.value)}
+                onClick={() => {
+                  setFilter(f.value);
+                  rewind();
+                }}
                 className={`min-h-11 cursor-pointer rounded-full border px-4.5 text-[15px] ${
                   on ? "border-paper bg-paper font-semibold text-ink" : "border-outline text-paper"
                 }`}
@@ -131,14 +161,44 @@ export function CourseCatalog({ courses, categories }: { courses: Course[]; cate
         </div>
       </div>
 
-      <div className="grid grid-cols-[repeat(auto-fill,minmax(min(100%,320px),1fr))] gap-5">
-        {visible.length === 0 && (
-          <p className="col-span-full rounded-[20px] border border-edge p-7 text-base text-muted">
-            No courses match &ldquo;{query}&rdquo;
-            {filter !== "all" && <> in {filter}</>}. Try another word, or book a demo class and
-            we&apos;ll help you choose.
-          </p>
-        )}
+      {visible.length === 0 && (
+        <p className="mb-5 rounded-[20px] border border-edge p-7 text-base text-muted">
+          No courses match &ldquo;{query}&rdquo;
+          {filter !== "all" && <> in {filter}</>}. Try another word, or book a demo class and
+          we&apos;ll help you choose.
+        </p>
+      )}
+
+      <div className="mb-5 flex items-center justify-between gap-6">
+        <p className="font-mono text-[13px] text-muted">
+          {visible.length} course{visible.length === 1 ? "" : "s"}
+        </p>
+        <div className="flex gap-2.5">
+          {([-1, 1] as const).map((dir) => (
+            <button
+              key={dir}
+              type="button"
+              aria-label={dir === 1 ? "Next courses" : "Previous courses"}
+              aria-controls="course-track"
+              disabled={dir === 1 ? edges.end : edges.start}
+              onClick={() => page(dir)}
+              className="flex size-12 cursor-pointer items-center justify-center rounded-full border border-outline text-xl text-paper transition-colors hover:border-gold hover:text-gold disabled:cursor-default disabled:opacity-30 disabled:hover:border-outline disabled:hover:text-paper"
+            >
+              {dir === 1 ? "→" : "←"}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <div
+        id="course-track"
+        ref={track}
+        onScroll={updateEdges}
+        role="region"
+        aria-label="Courses"
+        tabIndex={0}
+        className="-mx-2 flex snap-x snap-mandatory scroll-px-2 gap-5 overflow-x-auto px-2 pt-1 pb-4 [scrollbar-width:none] focus-visible:outline-2 focus-visible:outline-gold [&::-webkit-scrollbar]:hidden [&>*]:w-[min(84vw,360px)] [&>*]:shrink-0 [&>*]:snap-start"
+      >
         {visible.map((course) => (
           <CourseCard key={course.id} course={course} />
         ))}
@@ -163,6 +223,13 @@ export function CourseCatalog({ courses, categories }: { courses: Course[]; cate
             <span className="text-gold">Enquire →</span>
           </span>
         </Link>
+      </div>
+
+      <div aria-hidden="true" className="mt-4 h-0.75 overflow-hidden rounded-full bg-edge">
+        <div
+          className="h-full rounded-full bg-gold transition-[width] duration-150"
+          style={{ width: `${Math.max(8, edges.progress * 100)}%` }}
+        />
       </div>
     </section>
   );
