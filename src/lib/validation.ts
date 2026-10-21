@@ -27,6 +27,7 @@ const messages = {
   phone: "Enter a valid mobile number, e.g. 98765 43210.",
   email: "Enter a valid email address, e.g. you@gmail.com.",
   address: "Please add your delivery address with PIN code.",
+  slots: "Pick at least one time that suits you.",
 };
 
 /** Checks the named fields; `required` lists those that can't be empty. */

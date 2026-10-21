@@ -24,7 +24,7 @@ export function SiteHeader({ config }: { config: HeaderConfig }) {
         <Link
           href={config.home}
           aria-label="Rogue Code home"
-          className="flex items-center gap-2.5 text-[22px] font-bold tracking-[-0.02em] whitespace-nowrap text-paper"
+          className="flex shrink-0 items-center gap-2.5 text-[22px] font-bold tracking-[-0.02em] whitespace-nowrap text-paper"
         >
           <Logo suffix={config.logoSuffix} />
         </Link>
@@ -45,7 +45,11 @@ export function SiteHeader({ config }: { config: HeaderConfig }) {
           >
             {config.loginLabel}
           </ButtonLink>
-          <ButtonLink href={config.cta.href} size="md" className="hidden whitespace-nowrap md:inline-flex xl:hidden 2xl:inline-flex">
+          <ButtonLink
+            href={config.cta.href}
+            size="md"
+            className={`hidden whitespace-nowrap md:inline-flex xl:hidden ${config.hideCtaWithNav ? "" : "2xl:inline-flex"}`}
+          >
             {config.cta.label}
           </ButtonLink>
           <Suspense>

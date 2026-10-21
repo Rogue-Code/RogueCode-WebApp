@@ -1,6 +1,7 @@
 "use server";
 
 import { events } from "@/data/community";
+import { demoSlots, formatSlot, parseSlot } from "@/data/demoSlots";
 import { site } from "@/data/site";
 import { emailDomainAcceptsMail, sendConfirmationEmail, sendEnquiryEmail } from "@/lib/mail";
 import { formValues, normalizePhone, validateFields, type FieldErrors } from "@/lib/validation";
@@ -23,8 +24,12 @@ const sendFailed = (values: Record<string, string>): FormState => ({
 });
 
 /** Shared checks: required fields, phone and email format, and that the email's domain exists. */
-async function check(values: Record<string, string>): Promise<FormState | undefined> {
-  const errors = validateFields(values);
+async function check(
+  values: Record<string, string>,
+  required?: string[],
+  extraErrors: FieldErrors = {},
+): Promise<FormState | undefined> {
+  const errors = { ...validateFields(values, required), ...extraErrors };
   if (!errors.email && !(await emailDomainAcceptsMail(values.email))) {
     errors.email = "That email domain doesn't seem to exist. Please check for typos.";
   }
@@ -110,11 +115,27 @@ export async function registerForEvent(_prev: FormState, formData: FormData): Pr
 /** Academy "book a free demo class" form. */
 export async function bookDemo(_prev: FormState, formData: FormData): Promise<FormState> {
   const values = formValues(formData);
-  const invalid = await check(values);
+  const slots = [...new Set((values.slots ?? "").split(",").filter(Boolean))];
+  const badSlot = slots.some((s) => {
+    const p = parseSlot(s);
+    return !p || !demoSlots.times.includes(s.slice(11)) || demoSlots.closedWeekdays.includes(p.weekday);
+  });
+  const slotErrors: FieldErrors =
+    badSlot || slots.length > demoSlots.maxPicks
+      ? { slots: `Please pick up to ${demoSlots.maxPicks} times from the list.` }
+      : {};
+  const invalid = await check(values, ["name", "phone", "email", "slots"], slotErrors);
   if (invalid) return invalid;
 
   const phone = normalizePhone(values.phone)!;
-  const details = { Name: values.name, Phone: phone, Email: values.email, Course: values.course };
+  const preferred = slots.map((s, i) => `${i + 1}) ${formatSlot(s)}`).join("   ");
+  const details = {
+    Name: values.name,
+    Phone: phone,
+    Email: values.email,
+    Course: values.course,
+    "Preferred times": preferred,
+  };
 
   if (!(await sendEnquiryEmail(`Demo class request: ${values.name}`, details, values.email))) {
     return sendFailed(values);
@@ -123,7 +144,7 @@ export async function bookDemo(_prev: FormState, formData: FormData): Promise<Fo
     to: values.email,
     subject: "Your free demo class request — Rogue Academy",
     name: values.name,
-    intro: `Thanks for booking a free demo class! We'll call you on ${phone} to fix a time that suits you.`,
+    intro: `Thanks for booking a free demo class! We'll call you on ${phone} to confirm one of the times you picked.`,
     fields: details,
   });
 

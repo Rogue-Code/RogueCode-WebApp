@@ -58,6 +58,18 @@ export async function ProductDetail({ slug, base, homeHref }: { slug: string; ba
           <h1 className="text-[clamp(36px,4vw,56px)] leading-none font-bold tracking-[-0.035em]">{product.name}</h1>
           <PriceTag product={product} large />
           <p className="text-[17px] leading-[1.6] text-paper-soft">{product.description}</p>
+          {product.details && (
+            <ul className="flex flex-col border-t border-edge text-[15px]">
+              {product.details.map((detail) => (
+                <li key={detail} className="flex gap-3 border-b border-edge py-3 text-muted">
+                  <span aria-hidden="true" className="text-gold">
+                    ›
+                  </span>
+                  {detail}
+                </li>
+              ))}
+            </ul>
+          )}
           <AddToCart product={product} cartHref={`${base}/cart`} />
         </div>
       </div>

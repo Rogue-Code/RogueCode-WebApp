@@ -14,7 +14,7 @@ export function AcademyHero() {
           Learn to code from people who <span className="text-gold">ship code.</span>
         </h1>
         <p className="mt-8 max-w-140 text-[clamp(18px,1.6vw,21px)] leading-[1.55] text-paper-soft">
-          Rogue Academy is the training side of Rogue Code. Small batches, live classes and real
+          Rogue Code Academy is the training side of Rogue Code. Small batches, live classes and real
           projects, taught by the same developers who build software for our clients.
         </p>
         <div className="mt-10 flex flex-wrap gap-3">

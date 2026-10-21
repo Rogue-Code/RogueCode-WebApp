@@ -1,3 +1,4 @@
+import { CountUp } from "@/components/ui/CountUp";
 import { academyFacts } from "@/data/academy";
 
 export function Facts() {
@@ -7,7 +8,9 @@ export function Facts() {
         {academyFacts.map((fact) => (
           <div key={fact.label} className="flex-[1_1_200px]">
             <p className="mb-1.5 font-mono text-xs tracking-[0.08em] text-subtle">{fact.label}</p>
-            <p className="text-2xl font-semibold">{fact.value}</p>
+            <p className="text-2xl font-semibold">
+              <CountUp text={fact.value} />
+            </p>
           </div>
         ))}
       </div>

@@ -27,11 +27,15 @@ export function useFormChecks(
     }
   }
 
-  function onInput(event: FormEvent<HTMLFormElement>) {
-    const name = (event.target as HTMLInputElement).name;
+  /** Hides a field's message once the visitor changes it. */
+  function clearError(name: string) {
     if (!name || edited.includes(name)) return;
     setEdited([...edited, name]);
     setClientErrors((errors) => Object.fromEntries(Object.entries(errors).filter(([key]) => key !== name)));
+  }
+
+  function onInput(event: FormEvent<HTMLFormElement>) {
+    clearError((event.target as HTMLInputElement).name);
   }
 
   const errorFor = (name: string) =>
@@ -40,6 +44,7 @@ export function useFormChecks(
   return {
     formProps: { onSubmit, onInput, noValidate: true },
     errorFor,
+    clearError,
     /** What the visitor typed before a server-side error, to refill the form. */
     valueOf: (name: string) => state.values?.[name],
     successOpen: state.status === "success" && closedFor !== state,

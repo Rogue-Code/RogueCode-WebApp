@@ -36,6 +36,8 @@ export type HeaderConfig = {
   loginHref: string;
   loginLabel: string;
   cta: { label: string; href: string };
+  /** Hide the CTA button while the full nav is showing, for navs too long to leave room for it. */
+  hideCtaWithNav?: boolean;
 };
 
 export const studioHeader: HeaderConfig = {
@@ -70,6 +72,7 @@ export const academyHeader: HeaderConfig = {
   loginHref: "/login",
   loginLabel: "Student login",
   cta: { label: "Book a free demo", href: "/academy#demo" },
+  hideCtaWithNav: true,
 };
 
 export const footerNav = [

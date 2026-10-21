@@ -12,6 +12,8 @@ export type Product = {
   /** Original price in rupees, shown struck through. */
   mrp: number;
   description: string;
+  /** Short spec list shown under the description on the product page. */
+  details?: string[];
   sizes?: string[];
   image?: string;
   inStock: boolean;
@@ -34,7 +36,14 @@ export const products: Product[] = [
     price: 199,
     mrp: 299,
     description:
-      "[Product description — material, size and print details for the Rogue Code tote bag.]",
+      "An everyday black tote with the Rogue Code logo printed on the front. Carry your notebook and everyday essentials to class, the office or a weekend coding sprint.",
+    details: [
+      "Black with the Rogue Code logo in gold and white",
+      "Long shoulder handles",
+      "Material: [e.g. 100% cotton canvas]",
+      "Size: [e.g. 38 × 42 cm]",
+      "Care: [e.g. hand wash cold, do not iron the print]",
+    ],
     image: "/images/shop/rc-tote-bag.jpg",
     inStock: true,
   },
@@ -46,7 +55,14 @@ export const products: Product[] = [
     price: 499,
     mrp: 600,
     description:
-      "[Product description — fabric, fit and print details for the Rogue Code t-shirt.]",
+      "A clean black crew-neck tee with a small Rogue Code logo on the chest. Simple enough for every day and comfortable enough for a long day of classes or a late-night build.",
+    details: [
+      "Black crew neck, short sleeves",
+      "Rogue Code logo printed on the left chest",
+      "Fabric: [e.g. 100% cotton, 180 GSM]",
+      "Fit: [e.g. regular fit; size up for a relaxed look]",
+      "Care: [e.g. machine wash cold, wash inside out]",
+    ],
     sizes: ["S", "M", "L", "XL", "XXL"],
     image: "/images/shop/rc-tshirt.jpg",
     inStock: true,
