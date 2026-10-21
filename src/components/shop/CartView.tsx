@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useActionState, useEffect } from "react";
+import { FieldError, invalidClasses, useFormChecks } from "@/components/ui/FormFeedback";
 import { Icon } from "@/components/ui/Icon";
 import type { Product } from "@/data/products";
 import { placeOrder, type OrderState } from "@/lib/actions/orders";
@@ -18,6 +19,8 @@ export function CartView({ products, base }: { products: Product[]; base: string
   const [state, formAction, pending] = useActionState<OrderState, FormData>(placeOrder, {
     status: "idle",
   });
+  const { formProps, errorFor, valueOf } = useFormChecks(state, ["name", "phone", "email", "address"]);
+  const input = (name: string) => `${inputClasses} ${errorFor(name) ? invalidClasses : ""}`;
 
   useEffect(() => {
     if (state.status === "success") cart.clear();
@@ -32,8 +35,17 @@ export function CartView({ products, base }: { products: Product[]; base: string
         </h2>
         <p className="mt-5 max-w-140 text-lg leading-normal text-paper-soft">
           Your order <span className="font-mono text-paper">{state.orderId}</span> for{" "}
-          {formatPrice(state.total)} is in. We&apos;ll email you a confirmation and get in touch about
-          payment and delivery.
+          {formatPrice(state.total ?? 0)} is in. We&apos;ll call you to confirm payment and delivery.
+        </p>
+        <p className="mt-3 max-w-140 text-base leading-normal text-muted">
+          {state.confirmedTo ? (
+            <>
+              A confirmation is on its way to <span className="text-paper">{state.confirmedTo}</span>.
+              Check your spam folder if you don&apos;t see it.
+            </>
+          ) : (
+            "Keep your order number handy in case you need to contact us."
+          )}
         </p>
         <Link href={base} className="mt-8 inline-flex min-h-13 items-center gap-2.5 rounded-full bg-gold px-6.5 font-semibold text-ink">
           Keep shopping
@@ -95,6 +107,7 @@ export function CartView({ products, base }: { products: Product[]; base: string
 
       <form
         action={formAction}
+        {...formProps}
         className="sticky top-28 flex flex-[1_1_340px] flex-col gap-4 rounded-3xl border border-edge bg-royal p-8"
       >
         <h2 className="text-2xl font-semibold tracking-[-0.02em]">Order summary</h2>
@@ -117,17 +130,35 @@ export function CartView({ products, base }: { products: Product[]; base: string
 
         <p className="text-[15px] text-muted">Delivery details</p>
         <input type="hidden" name="cart" value={JSON.stringify(lines)} />
-        <input name="name" required placeholder="Full name" autoComplete="name" className={inputClasses} />
-        <input name="email" type="email" required placeholder="Email" autoComplete="email" className={inputClasses} />
-        <input name="phone" type="tel" required placeholder="Phone" autoComplete="tel" className={inputClasses} />
-        <textarea
-          name="address"
-          required
-          rows={3}
-          placeholder="Delivery address with PIN code"
-          autoComplete="street-address"
-          className={`${inputClasses} resize-y py-3.5`}
-        />
+        {[
+          { name: "name", placeholder: "Full name", autoComplete: "name" },
+          { name: "email", type: "email", placeholder: "Email", autoComplete: "email" },
+          { name: "phone", type: "tel", placeholder: "Phone, e.g. 98765 43210", autoComplete: "tel" },
+        ].map((f) => (
+          <div key={f.name} className="flex flex-col gap-1.5">
+            <input
+              {...f}
+              defaultValue={valueOf(f.name)}
+              aria-label={f.placeholder}
+              aria-invalid={!!errorFor(f.name)}
+              className={input(f.name)}
+            />
+            <FieldError message={errorFor(f.name)} />
+          </div>
+        ))}
+        <div className="flex flex-col gap-1.5">
+          <textarea
+            name="address"
+            rows={3}
+            placeholder="Delivery address with PIN code"
+            autoComplete="street-address"
+            defaultValue={valueOf("address")}
+            aria-label="Delivery address with PIN code"
+            aria-invalid={!!errorFor("address")}
+            className={`${input("address")} resize-y py-3.5`}
+          />
+          <FieldError message={errorFor("address")} />
+        </div>
         <button
           type="submit"
           disabled={pending}
@@ -135,7 +166,7 @@ export function CartView({ products, base }: { products: Product[]; base: string
         >
           {pending ? "Placing order…" : `Place order · ${formatPrice(subtotal)}`}
         </button>
-        {state.status === "error" && (
+        {state.status === "error" && !state.errors && (
           <p role="alert" className="text-gold">
             {state.message}
           </p>

@@ -26,6 +26,7 @@ const messages = {
   name: "Please add your name.",
   phone: "Enter a valid mobile number, e.g. 98765 43210.",
   email: "Enter a valid email address, e.g. you@gmail.com.",
+  address: "Please add your delivery address with PIN code.",
 };
 
 /** Checks the named fields; `required` lists those that can't be empty. */
@@ -39,6 +40,9 @@ export function validateFields(
   }
   if (values.phone && !errors.phone && !normalizePhone(values.phone)) errors.phone = messages.phone;
   if (values.email && !errors.email && !isValidEmail(values.email)) errors.email = messages.email;
+  if (values.address && !errors.address && !/\b\d{6}\b/.test(values.address)) {
+    errors.address = "Please include your 6-digit PIN code.";
+  }
   return errors;
 }
 

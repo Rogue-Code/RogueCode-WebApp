@@ -8,13 +8,16 @@ import { formValues, validateFields, type FieldErrors } from "@/lib/validation";
  * Checks name / phone / email in the browser before the form is sent, and merges those
  * messages with any the server returned. Typing in a field clears its message.
  */
-export function useFormChecks(state: FormState) {
+export function useFormChecks(
+  state: Pick<FormState, "status" | "errors" | "values">,
+  required?: string[],
+) {
   const [clientErrors, setClientErrors] = useState<FieldErrors>({});
   const [edited, setEdited] = useState<string[]>([]);
-  const [closedFor, setClosedFor] = useState<FormState>();
+  const [closedFor, setClosedFor] = useState<object>();
 
   function onSubmit(event: FormEvent<HTMLFormElement>) {
-    const found = validateFields(formValues(new FormData(event.currentTarget)));
+    const found = validateFields(formValues(new FormData(event.currentTarget)), required);
     setClientErrors(found);
     setEdited([]);
     const first = Object.keys(found)[0];
