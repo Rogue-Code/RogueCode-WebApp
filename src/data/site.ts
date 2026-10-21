@@ -10,6 +10,19 @@ export const site = {
   },
   compilerUrl: "https://rc-js-compiler.netlify.app/",
   instagram: { handle: "@rogue.code", href: "https://www.instagram.com/rogue.code/" },
+  /** Google Business Profile ("Rogue Code", Dattani Trade Centre, Borivali). */
+  google: {
+    mapsUrl: "https://www.google.com/maps?cid=10278870059345085295",
+    /**
+     * Place ID (starts with "ChIJ…"): needed to load reviews through the Places API and for the
+     * direct "Write a review" form. Find it at
+     * developers.google.com/maps/documentation/javascript/examples/places-placeid-finder
+     */
+    placeId: "ChIJKYEIJD2x5zsRb4Op89vhpY4",
+    /** Shown until live data loads; update now and then. Checked 21 Oct 2026. */
+    rating: 5.0,
+    reviewCount: 90,
+  },
   socials: [
     { label: "Instagram", href: "https://www.instagram.com/rogue.code/" },
     { label: "LinkedIn", href: "#" },

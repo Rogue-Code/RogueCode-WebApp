@@ -7,6 +7,7 @@ import { Facts } from "@/components/academy/Facts";
 import { Faq } from "@/components/academy/Faq";
 import { HowItWorks } from "@/components/academy/HowItWorks";
 import { KidsCoding } from "@/components/academy/KidsCoding";
+import { GoogleReviews } from "@/components/academy/GoogleReviews";
 import { InstagramFeed } from "@/components/academy/InstagramFeed";
 import { StudentVoice } from "@/components/academy/StudentVoice";
 import { Trainers } from "@/components/academy/Trainers";
@@ -29,6 +30,7 @@ export default function AcademyPage() {
       <Curriculum />
       <Trainers />
       <StudentVoice />
+      <GoogleReviews />
       <InstagramFeed />
       <Faq />
       <DemoCta courseTitles={courses.map((c) => c.title)} />

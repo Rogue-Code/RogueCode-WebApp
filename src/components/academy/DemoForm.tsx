@@ -1,14 +1,24 @@
 "use client";
 
-import { useActionState, useMemo, useState, useSyncExternalStore } from "react";
+import { useActionState, useId, useMemo, useState, useSyncExternalStore } from "react";
 import { FieldError, SentDialog, useFormChecks } from "@/components/ui/FormFeedback";
 import { demoSlots, formatSlot, formatTime, slotMonth, slotWeekday } from "@/data/demoSlots";
 import { bookDemo, type FormState } from "@/lib/actions/forms";
+import { formValues, validateFields } from "@/lib/validation";
 
 const fieldClasses =
   "box-border min-h-13 rounded-xl border border-ink bg-white text-base text-ink";
 
 const noop = () => () => {};
+
+/** Red asterisk for required fields. */
+function Required() {
+  return (
+    <span aria-hidden="true" className="ml-0.5 text-red-700">
+      *
+    </span>
+  );
+}
 
 /** Today's date, read only in the browser so the day list matches the visitor's clock. */
 function useToday() {
@@ -62,7 +72,8 @@ function SlotPicker({
   return (
     <fieldset className="flex min-w-0 flex-col gap-3">
       <legend className="mb-1.5 text-sm font-medium">
-        Preferred times{" "}
+        Preferred times
+        <Required />{" "}
         <span className="font-normal text-ink-600">
           (pick up to {demoSlots.maxPicks}, {picks.length}/{demoSlots.maxPicks} chosen)
         </span>
@@ -176,24 +187,44 @@ export function DemoForm({
     "slots",
   ]);
   const [picks, setPicks] = useState<string[]>([]);
+  // Whether name, phone and email currently pass the checks; the button stays disabled until they do
+  const [detailsOk, setDetailsOk] = useState(false);
+  const ready = detailsOk && picks.length > 0;
+  const hintId = useId();
 
   // Start fresh after a successful booking (adjusting state during render, not in an effect)
   const [seen, setSeen] = useState(state);
   if (seen !== state) {
     setSeen(state);
-    if (state.status === "success") setPicks([]);
+    if (state.status === "success") {
+      setPicks([]);
+      setDetailsOk(false);
+    }
   }
 
   const input = (name: string) =>
     `px-4 ${fieldClasses} ${errorFor(name) ? "border-2 border-red-700" : ""}`;
 
   return (
-    <form action={formAction} {...formProps} className="flex min-w-0 flex-col gap-3.5">
+    <form
+      action={formAction}
+      {...formProps}
+      onInput={(e) => {
+        formProps.onInput(e);
+        const values = formValues(new FormData(e.currentTarget));
+        setDetailsOk(Object.keys(validateFields(values, ["name", "phone", "email"])).length === 0);
+      }}
+      className="flex min-w-0 flex-col gap-3.5"
+    >
       <label className="flex flex-col gap-1.5 text-sm font-medium">
-        Name
+        <span>
+          Name
+          <Required />
+        </span>
         <input
           type="text"
           name="name"
+          required
           autoComplete="name"
           defaultValue={valueOf("name")}
           aria-invalid={!!errorFor("name")}
@@ -203,10 +234,14 @@ export function DemoForm({
       </label>
       <div className="flex flex-wrap gap-3.5">
         <label className="flex flex-[1_1_180px] flex-col gap-1.5 text-sm font-medium">
-          Phone
+          <span>
+            Phone
+            <Required />
+          </span>
           <input
             type="tel"
             name="phone"
+            required
             autoComplete="tel"
             inputMode="tel"
             placeholder="98765 43210"
@@ -217,10 +252,14 @@ export function DemoForm({
           <FieldError message={errorFor("phone")} tone="gold" />
         </label>
         <label className="flex flex-[1_1_180px] flex-col gap-1.5 text-sm font-medium">
-          Email
+          <span>
+            Email
+            <Required />
+          </span>
           <input
             type="email"
             name="email"
+            required
             autoComplete="email"
             placeholder="you@example.com"
             defaultValue={valueOf("email")}
@@ -256,11 +295,19 @@ export function DemoForm({
       <div className="flex flex-wrap items-center gap-4">
         <button
           type="submit"
-          disabled={pending}
-          className="min-h-13 cursor-pointer rounded-full bg-ink px-7 text-[17px] font-semibold text-paper disabled:opacity-60"
+          disabled={pending || !ready}
+          aria-describedby={ready ? undefined : hintId}
+          className="min-h-13 cursor-pointer rounded-full bg-ink px-7 text-[17px] font-semibold text-paper disabled:cursor-not-allowed disabled:opacity-40"
         >
           {pending ? "Booking…" : "Book my free class"}
         </button>
+        {!ready && !pending && state.status !== "error" && (
+          <p id={hintId} className="text-sm text-ink-700">
+            {detailsOk
+              ? "Pick at least one preferred time to continue."
+              : "Fill in the fields marked * to continue."}
+          </p>
+        )}
         {state.status === "error" && state.message && (
           <p role="status" className="font-semibold text-ink">
             {state.message}
