@@ -5,7 +5,7 @@ export const site = {
   tagline: "We code. We compile. We run.",
   contact: {
     email: "contact@roguecode.in",
-    phone: "[+91 00000 00000]",
+    phone: "+91 93203 82950",
     address: "25, Dattani Trade Centre, Near New BMC Office, Shanti Nagar, Borivali West, Mumbai, Maharashtra 400092",
   },
   compilerUrl: "https://rc-js-compiler.netlify.app/",
@@ -117,8 +117,8 @@ export const footerNav = [
 ];
 
 export const stats = [
-  { value: "[00]+", label: "Projects shipped" },
-  { value: "[00]+", label: "Students trained" },
-  { value: "[00]+", label: "Workshops & events" },
-  { value: "[YEAR]", label: "Writing code since", highlight: true },
+  { value: "50+", label: "Projects shipped" },
+  { value: "1000+", label: "Students trained" },
+  { value: "20+", label: "Workshops & events" },
+  { value: "2015", label: "Writing code since", highlight: true },
 ];

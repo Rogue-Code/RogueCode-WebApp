@@ -19,7 +19,7 @@ export function Contact() {
               <Icon name="mail" size={20} strokeWidth={1.8} />
               {site.contact.email}
             </a>
-            <a href={`tel:${site.contact.phone}`} className="flex items-center gap-3">
+            <a href={`tel:${site.contact.phone.replace(/\s/g, "")}`} className="flex items-center gap-3">
               <Icon name="phone" size={20} strokeWidth={1.8} />
               {site.contact.phone}
             </a>

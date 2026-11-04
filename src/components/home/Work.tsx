@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { ArrowLink } from "@/components/ui/Button";
 import { SectionTitle } from "@/components/ui/Eyebrow";
 import { Photo } from "@/components/ui/Photo";
@@ -18,18 +17,35 @@ function Screenshot({ project, large }: { project: Project; large: boolean }) {
 }
 
 function ProjectCard({ project, large = false }: { project: Project; large?: boolean }) {
-  return (
-    <Link href="#work" className={`flex flex-col text-paper ${large ? "gap-4.5" : "gap-3.5"}`}>
+  const content = (
+    <>
       <Screenshot project={project} large={large} />
       <div className={`flex flex-wrap items-baseline justify-between ${large ? "gap-4" : "gap-3"}`}>
         <span className={large ? "text-[26px] font-semibold tracking-[-0.02em]" : "text-xl font-semibold"}>
           {project.name}
+          {project.url && (
+            <span aria-hidden="true" className="ml-1.5 text-gold">
+              ↗
+            </span>
+          )}
         </span>
         <span className={`font-mono text-muted ${large ? "text-[13px]" : "text-xs"}`}>
           {project.client ? `${project.client} · ${project.type}` : project.type}
         </span>
       </div>
-    </Link>
+      <p className={`leading-[1.6] text-muted ${large ? "max-w-170 text-[17px]" : "text-[15px]"}`}>
+        {project.description}
+      </p>
+    </>
+  );
+  const className = `flex flex-col text-paper ${large ? "gap-4.5" : "gap-3.5"}`;
+
+  return project.url ? (
+    <a href={project.url} target="_blank" rel="noopener noreferrer" className={className}>
+      {content}
+    </a>
+  ) : (
+    <div className={className}>{content}</div>
   );
 }
 
@@ -41,7 +57,7 @@ export function Work() {
       <div className="container-page py-28">
         <div className="mb-12 flex flex-wrap items-end justify-between gap-6">
           <SectionTitle>Selected work</SectionTitle>
-          <ArrowLink href="#work">All projects</ArrowLink>
+          <ArrowLink href="#contact">Start a project</ArrowLink>
         </div>
         <div className="flex flex-wrap gap-6">
           <div className="flex-[2_1_520px]">

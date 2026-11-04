@@ -14,10 +14,26 @@ export function Voices() {
               “{t.quote}”
             </blockquote>
             <figcaption className="mt-auto flex items-center gap-3.5">
-              <span className="placeholder-stripes size-12 rounded-full border border-edge" />
+              <span
+                aria-hidden="true"
+                className="flex size-12 flex-none items-center justify-center rounded-full border border-edge text-lg font-semibold text-gold"
+              >
+                {t.name.charAt(0)}
+              </span>
               <span>
                 <span className="block font-semibold">{t.name}</span>
-                <span className="block text-sm text-muted">{t.detail}</span>
+                {t.href ? (
+                  <a
+                    href={t.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block text-sm text-muted underline underline-offset-4"
+                  >
+                    {t.detail}
+                  </a>
+                ) : (
+                  <span className="block text-sm text-muted">{t.detail}</span>
+                )}
               </span>
             </figcaption>
           </figure>

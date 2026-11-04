@@ -13,23 +13,26 @@ export function Trainers() {
         </p>
       </div>
       <div className="flex flex-wrap gap-5">
-        {trainers.map((trainer) => (
-          <figure key={trainer.id} className="flex flex-[1_1_260px] flex-col gap-4">
-            <Photo
-              src={trainer.photo}
-              alt={trainer.name}
-              sizes="(min-width: 1280px) 300px, (min-width: 640px) 50vw, 100vw"
-              label="[PHOTO]"
-              className="aspect-[4/5] rounded-[20px] border border-edge"
-            />
-            <figcaption>
-              <span className="block text-[22px] font-semibold">{trainer.name}</span>
-              <span className="mt-1 block text-[15px] text-muted">
-                {trainer.role} · teaches {trainer.course}
-              </span>
-            </figcaption>
-          </figure>
-        ))}
+        {trainers.map((trainer) => {
+          const detail = [trainer.role, trainer.course && `teaches ${trainer.course}`]
+            .filter(Boolean)
+            .join(" · ");
+          return (
+            <figure key={trainer.id} className="flex flex-[1_1_260px] flex-col gap-4">
+              <Photo
+                src={trainer.photo}
+                alt={trainer.name}
+                sizes="(min-width: 1280px) 300px, (min-width: 640px) 50vw, 100vw"
+                label="[PHOTO]"
+                className="aspect-[4/5] rounded-[20px] border border-edge"
+              />
+              <figcaption>
+                <span className="block text-[22px] font-semibold">{trainer.name}</span>
+                {detail && <span className="mt-1 block text-[15px] text-muted">{detail}</span>}
+              </figcaption>
+            </figure>
+          );
+        })}
       </div>
     </section>
   );

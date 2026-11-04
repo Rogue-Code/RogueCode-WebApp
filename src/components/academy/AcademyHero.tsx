@@ -1,4 +1,5 @@
 import { ButtonLink } from "@/components/ui/Button";
+import { nextBatchStart } from "@/data/academy";
 
 const steps = ["pick a track", "learn live, in small batches", "build a real project at the studio"];
 
@@ -8,7 +9,7 @@ export function AcademyHero() {
       <div className="flex-[3_1_520px]">
         <p className="inline-flex items-center gap-2.5 rounded-full border border-edge-strong px-3.5 py-2 font-mono text-[13px] text-paper-soft">
           <span aria-hidden="true" className="size-2 rounded-full bg-gold" />
-          Next batch starts [DATE] · [00] seats
+          Next batch starts {nextBatchStart}
         </p>
         <h1 className="mt-7 text-[clamp(48px,7.4vw,112px)] leading-[0.92] font-extrabold tracking-[-0.05em]">
           Learn to code from people who <span className="text-gold">ship code.</span>

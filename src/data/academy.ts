@@ -78,13 +78,25 @@ export const academySteps = [
   },
 ];
 
-export const trainers = Array.from({ length: 4 }, (_, i) => ({
-  id: `trainer-${i + 1}`,
-  name: "[Trainer name]",
-  role: "[Role]",
-  course: "[Course]",
-  photo: i === 0 ? "/images/trainers/sakshi.jpeg" : (undefined as string | undefined),
-}));
+/** Shown in the Academy hero. Update once this batch has started. */
+export const nextBatchStart = "15 Nov";
+
+export type Trainer = {
+  id: string;
+  name: string;
+  role?: string;
+  /** What they teach, e.g. "Python and DSA". */
+  course?: string;
+  /** e.g. "/images/trainers/name.jpg" */
+  photo?: string;
+};
+
+export const trainers: Trainer[] = [
+  { id: "priyanka-pacheria", name: "Priyanka Pacheria" },
+  { id: "kishan-chaudhary", name: "Kishan Chaudhary" },
+  { id: "suraj-chatterjee", name: "Suraj Chatterjee" },
+  { id: "bhavya-shah", name: "Bhavya Shah" },
+];
 
 export const faqs = [
   {
@@ -92,13 +104,25 @@ export const faqs = [
     answer:
       "No. Courses marked Beginner start from zero. The free demo class is the easiest way to check you're in the right place.",
   },
-  { question: "Are classes online or in person?", answer: "[Your answer.]" },
+  {
+    question: "Are classes online or in person?",
+    answer:
+      "Both. Most students prefer to learn online, so most batches are live online classes. In-person classes are held at our centre in Borivali West, Mumbai.",
+  },
   {
     question: "What happens if I miss a class?",
-    answer: "[Your answer, e.g. recordings or backup sessions.]",
+    answer:
+      "If you miss a class, your trainer will revise what was covered so you can catch up. If you miss more than one class, catching up is your responsibility, so try to attend every session.",
   },
-  { question: "Can I pay in instalments?", answer: "[Your answer.]" },
-  { question: "Do you help with internships or jobs?", answer: "[Your answer.]" },
+  {
+    question: "Can I pay in instalments?",
+    answer: "Yes. You can pay the course fee in up to two instalments.",
+  },
+  {
+    question: "Do you help with internships or jobs?",
+    answer:
+      "Yes. We refer students for internships and job openings and help them prepare, but we don't guarantee a placement.",
+  },
 ];
 
 /** Posts from @rogue.code shown on the Academy page. Images are saved copies in public/images/instagram. */
